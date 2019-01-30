@@ -5,7 +5,6 @@
  */
 
 #include "ADC12Bit.h"
-#include <stdint.h>
 /********************************************************* ADC CONTROL REGISTER 0 ****************************************************************/
 void start_adc_conversion(void){
     ADC12CTL0 |= ADC12SC; // toggle the conversion bit to begin conversion with the 12 bit ADC
@@ -239,8 +238,8 @@ void set_ADC_sample_inversion(uint8_t invert){
     }
 }
 
-void set_ADC_sample_signal_source(uint8_t source){
-    if(source){
+void set_ADC_sample_pulse_mode(uint8_t pulse){
+    if(pulse){
        ADC12CTL1 |= ADC12SHP;
     }
     else{
