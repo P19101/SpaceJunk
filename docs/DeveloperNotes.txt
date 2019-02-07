@@ -1,0 +1,23 @@
+CLOCK SOURCES:
+	There are 5 different possible sources for the clocks on the system. 
+	The Clock Source information can be found starting in section 3 of the 
+	family reference manual which starts on page 93.
+	
+	LFXTCLK(low frequency external clock) - Low-frequency oscillator which is connected to an external source
+		which can be from a number of lower frequency sources such as crystals
+		and digital pulses.
+		
+	VLOCLK(very low power clock) - Internal 10kHz clock source for lowest power consumption.
+	
+	DCOCLK(Digital Clock) - Digitally controlled internal clock with a selectable clock frequency
+	
+	MODCLK(modular low power clock) - 5MHz internal clock source which is a low power option, but obviously
+		not as low power as the VLOCLK.
+		
+	HFXTCLK(high frequency external clock) - best performance, worst power. can support up to 24MHZ crystals
+
+	There are three clock channels so to speak witch come from one of the five
+	sources above. These are the MCLK(Master clock), SMCLK(Subsystem Master clock),
+	and ACLK(Auxillary Clock). most peripherals can be run off any of these clocks,
+	so they basically just mean that any 3 of the 5 options above can be operational
+	at any point in time.
