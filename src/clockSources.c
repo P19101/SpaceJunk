@@ -52,3 +52,168 @@ void set_digital_clock_frequency(uint8_t frequency){
 	}
 	CSCTL1 = frequencySet;
 }
+
+void select_ACLK_source(uint8_t source){
+	uint16_t sourceSet;
+	CSCTL2 &= ~(SELA0 | SELA1 | SELA2);
+	switch(source){
+		case LFXTCLK:
+			sourceSet |= 0x0000;
+			break;
+		case VLOCLK:
+			sourceSet |= SELA0;
+			break;
+		case LFMODCLK:
+			sourceSet |= SELA1;
+			break;
+		default:
+			sourceSet |= 0x0000;
+			break;
+	}
+	CSCTL2 |= sourceSet;
+}
+
+void select_MCLK_source(uint8_t source){
+	uint16_t sourceSet;
+	CSCTL2 &= ~(SELS0 | SELS1 | SELS2);
+	switch(source){
+		case LFXTCLK:
+			sourceSet |= 0x0000;
+			break;
+		case VLOCLK:
+			sourceSet |= SELS0;
+			break;
+		case LFMODCLK:
+			sourceSet |= SELS1;
+			break;
+		case DCOCLK:
+			sourceSet |= SELS0 | SELS1;
+			break;
+		case MODCLK:
+			sourceSet |= SELS2;
+			break;
+		case HFXTCLK:
+			sourceSet |= SELS0 | SELS2;
+			break;
+		default:
+			sourceSet |= 0x0000;
+			break;
+	}
+	CSCTL2 |= sourceSet;
+}
+
+void select_SMCLK_source(uint8_t source){
+	uint16_t sourceSet;
+	CSCTL2 &= ~(SELM0 | SELM1 | SELM2);
+	switch(source){
+		case LFXTCLK:
+			sourceSet |= 0x0000;
+			break;
+		case VLOCLK:
+			sourceSet |= SELM0;
+			break;
+		case LFMODCLK:
+			sourceSet |= SELM1;
+			break;
+		case DCOCLK:
+			sourceSet |= SELM0 | SELM1;
+			break;
+		case MODCLK:
+			sourceSet |= SELM2;
+			break;
+		case HFXTCLK:
+			sourceSet |= SELM0 | SELM2;
+			break;
+		default:
+			sourceSet |= 0x0000;
+			break;
+	}
+	CSCTL2 |= sourceSet;
+}
+
+void auxilary_clock_division_factor(uint8_t div){
+	uint16_t divSet;
+	CSCTL2 &= ~(DIVA0 | DIVA1 | DIVA2);
+	switch(div){
+		case FACTOR_1:
+			divSet = 0x0000;
+			break;
+		case FACTOR_2:
+			divSet = DIVA0;
+			break;
+		case FACTOR_4:
+			divSet = DIVA1;
+			break;
+		case FACTOR_8:
+			divSet = DIVA1 | DIVA0;
+			break;
+		case FACTOR_16:
+			divSet = DIVA2;
+			break;
+		case FACTOR_32:
+			divSet = DIVA2 | DIVA0;
+			break;
+		default:
+			divSet = 0x0000;
+			break;
+	}
+	CSCTL2 |= divSet;
+}
+
+void master_clock_division_factor(uint8_t div){
+	uint16_t divSet;
+	CSCTL2 &= ~(DIVM0 | DIVM1 | DIVM2);
+	switch(div){
+		case FACTOR_1:
+			divSet = 0x0000;
+			break;
+		case FACTOR_2:
+			divSet = DIVM0;
+			break;
+		case FACTOR_4:
+			divSet = DIVM1;
+			break;
+		case FACTOR_8:
+			divSet = DIVM1 | DIVM0;
+			break;
+		case FACTOR_16:
+			divSet = DIVM2;
+			break;
+		case FACTOR_32:
+			divSet = DIVM2 | DIVM0;
+			break;
+		default:
+			divSet = 0x0000;
+			break;
+	}
+	CSCTL2 |= divSet;
+}
+
+void subsystem_clock_division_factor(uint8_t div){
+	uint16_t divSet;
+	CSCTL2 &= ~(DIVS0 | DIVS1 | DIVS2);
+	switch(div){
+		case FACTOR_1:
+			divSet = 0x0000;
+			break;
+		case FACTOR_2:
+			divSet = DIVS0;
+			break;
+		case FACTOR_4:
+			divSet = DIVS1;
+			break;
+		case FACTOR_8:
+			divSet = DIVS1 | DIVS0;
+			break;
+		case FACTOR_16:
+			divSet = DIVS2;
+			break;
+		case FACTOR_32:
+			divSet = DIVS2 | DIVS0;
+			break;
+		default:
+			divSet = 0x0000;
+			break;
+	}
+	CSCTL2 |= divSet;
+}

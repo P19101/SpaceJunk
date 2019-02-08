@@ -37,6 +37,15 @@ typedef enum clockSources{
 	HFXTCLK,
 }clockSourcesINTXT;
 
+typedef enum clockSourceDivider{
+	FACTOR_1,
+	FACTOR_2,
+	FACTOR_4,
+	FACTOR_8,
+	FACTOR_16,
+	FACTOR_32,
+}clockSourceDivMain;
+
 /**
  * Unlocks the CS registers so that the clock source settings can be modified upon
  * startup. This must be done before any changes can be made. 
@@ -52,5 +61,57 @@ void unlock_CS_register_set(void);
  * @return: None
  */
 void set_digital_clock_frequency(uint8_t frequency);
+
+/**
+ * select the source for the auxilary clock. the choices are either:
+ * 		LFXTCLK
+ * 		VLOCLK
+ *		LFMODCLK
+ * @param uint8_t source: the source selection from the clockSources enum selected
+ * 		from the three choices above. 
+ * @return: None
+ */
+void select_ACLK_source(uint8_t source);
+
+/**
+ * select the source for the master clock.
+ * @param uint8_t source: the source selection from the clockSources enum.
+ * @return: None
+ */
+void select_MCLK_source(uint8_t source);
+
+/**
+ * select the source for the subsytem master clock.
+ * @param uint8_t source: the source selection from the clockSources enum.
+ * @return: None
+ */
+void select_SMCLK_source(uint8_t source);
+
+/**
+ * select the division factor for the auxilary clock
+ * @param uint8_t div: the clock divider enum for the division factor
+ * @return: None
+ */
+void auxilary_clock_division_factor(uint8_t div);
+
+/**
+ * select the division factor for the master clock
+ * @param uint8_t div: the clock divider enum for the division factor
+ * @return: None
+ */
+void master_clock_division_factor(uint8_t div);
+
+/**
+ * select the division factor for the subsystem clock
+ * @param uint8_t div: the clock divider enum for the division factor
+ * @return: None
+ */
+void subsystem_clock_division_factor(uint8_t div);
+
+
+
+
+
+
 
 
