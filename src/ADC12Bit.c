@@ -4,7 +4,8 @@
  * @brief File containing functions for the 12 bit ADC
  */
 
-#include "ADC12Bit.h"
+#include "includes/ADC12Bit.h"
+#include "includes/commonHeader.h"
 /********************************************************* ADC CONTROL REGISTER 0 ****************************************************************/
 void start_adc_conversion(void){
     ADC12CTL0 |= ADC12SC; // toggle the conversion bit to begin conversion with the 12 bit ADC
@@ -46,7 +47,7 @@ void set_sample_hold_time_zero(uint8_t holdTime){
     // select which bits to set
     switch(holdTime){
         case HOLD_FOUR:
-            holdTimeSet = 0x0000;
+            holdTimeSet = DEFAULT_SELECTION;
             break;
         case HOLD_EIGHT:
             holdTimeSet = ADC12SHT00;
@@ -79,7 +80,7 @@ void set_sample_hold_time_zero(uint8_t holdTime){
             holdTimeSet = ADC12SHT03 | ADC12SHT01;
             break;
         default:
-            holdTimeSet = 0x0000;
+            holdTimeSet = DEFAULT_SELECTION;
             break;
     }
     ADC12CTL0 |= holdTimeSet;
@@ -94,7 +95,7 @@ void set_sample_hold_time_one(uint8_t holdTime){
     // select which bits to set
     switch(holdTime){
         case HOLD_FOUR:
-            holdTimeSet = 0x0000;
+            holdTimeSet = DEFAULT_SELECTION;
             break;
         case HOLD_EIGHT:
             holdTimeSet = ADC12SHT10;
@@ -127,7 +128,7 @@ void set_sample_hold_time_one(uint8_t holdTime){
             holdTimeSet = ADC12SHT13 | ADC12SHT11;
             break;
         default:
-            holdTimeSet = 0x0000;
+            holdTimeSet = DEFAULT_SELECTION;
             break;
     }
     ADC12CTL0 |= holdTimeSet;
@@ -147,7 +148,7 @@ void set_conversion_sequence(uint8_t sequenceType){
     // select which bits to set
     switch(sequenceType){
         case SINGLE_CHANNEL_SINGLE_CONVERSION:
-            sequenceTypeSet = 0x0000;
+            sequenceTypeSet = DEFAULT_SELECTION;
             break;
         case MULTI_CHANNEL_SINGLE_CONVERSION:
             sequenceTypeSet = ADC12CONSEQ0;
@@ -158,7 +159,7 @@ void set_conversion_sequence(uint8_t sequenceType){
         case MULTI_CHANNEL_REPEAT_CONVERSION:
             sequenceTypeSet = ADC12CONSEQ1 | ADC12CONSEQ0;
         default:
-            sequenceTypeSet = 0x0000;
+            sequenceTypeSet = DEFAULT_SELECTION;
             break;
     }
     ADC12CTL1 |= sequenceTypeSet;
@@ -173,7 +174,7 @@ void set_ADC_clock_source(uint8_t clockSource){
     // select which bits to set
     switch(clockSource){
         case ADC_OSCILLATOR:
-            clockSourceSet = 0x0000;
+            clockSourceSet = DEFAULT_SELECTION;
             break;
         case ACLOCK:
             clockSourceSet = ADC12SSEL0;
@@ -185,7 +186,7 @@ void set_ADC_clock_source(uint8_t clockSource){
             clockSourceSet = ADC12SSEL1 | ADC12SSEL0;
             break;
         default:
-            clockSourceSet = 0x0000;
+            clockSourceSet = DEFAULT_SELECTION;
             break;
     }
     ADC12CTL1 |= clockSourceSet;
@@ -200,7 +201,7 @@ void set_ADC_secondary_divider(uint8_t divisor){
     // select which bits to set
     switch(divisor){
         case ADC_DIV_1:
-            divisorSet = 0x0000;
+            divisorSet = DEFAULT_SELECTION;
             break;
         case ADC_DIV_2:
             divisorSet = ADC12DIV0;
@@ -224,7 +225,7 @@ void set_ADC_secondary_divider(uint8_t divisor){
             divisorSet = ADC12DIV2 | ADC12DIV1 | ADC12DIV0;
             break;
         default:
-            divisorSet = 0x0000;
+            divisorSet = DEFAULT_SELECTION;
     }
     ADC12CTL1 |= divisorSet;
 }
@@ -256,7 +257,7 @@ void set_ADC_sample_trigger_source(uint8_t source){
     // select which bits to set
     switch(source){
         case SOFTWARE_SOURCE:
-            sourceSet = 0x0000;
+            sourceSet = DEFAULT_SELECTION;
             break;
         case TA0_CCR1:
             sourceSet = ADC12SHS0;
@@ -278,7 +279,7 @@ void set_ADC_sample_trigger_source(uint8_t source){
             break;
         // the case for ADC12SHS2 | ADC12SHS1 | ADC12SHS0 is reserved
         default:
-            sourceSet = 0x0000;
+            sourceSet = DEFAULT_SELECTION;
             break;
     }
     ADC12CTL1 |= sourceSet;
@@ -293,7 +294,7 @@ void set_ADC_clock_predivider(uint8_t divisor){
     // select which bits to set
     switch(divisor){
         case ADC_PRE_DIV_1:
-            divisorSet = 0x0000;
+            divisorSet = DEFAULT_SELECTION;
             break;
         case ADC_PRE_DIV_4:
             divisorSet = ADC12PDIV0;
@@ -335,7 +336,7 @@ void set_ADC_resolution(uint8_t resolution){
     // select which bits to set
     switch(resolution){
         case ADC_8BIT_RES:
-            resolutionSet = 0x0000;
+            resolutionSet = DEFAULT_SELECTION;
             break;
         case ADC_10BIT_RES:
             resolutionSet = ADC12RES0;

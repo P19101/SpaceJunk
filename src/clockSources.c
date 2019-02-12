@@ -5,7 +5,8 @@
  *		adjusting these values can have a large inpact on the performance of all subsystems.
  */
 
-#include "clockSources.h"
+#include "includes/clockSources.h"
+#include "includes/commonHeader.h"
  
 void unlock_CS_register_set(void){
 	CSCTL0 |= CSKEY;
@@ -13,10 +14,10 @@ void unlock_CS_register_set(void){
 
 void set_digital_clock_frequency(uint8_t frequency){
 	uint16_t frequencySet;
-	CSCTL1 &= ~(DCOFSEL0 | DCOFSEL1 | DCOFSEL2 | DCOFSEL);
+	CSCTL1 &= ~(DCOFSEL0 | DCOFSEL1 | DCOFSEL2 | DCORSEL);
 	switch(frequency){
 		case MHZ_1:
-			frequencySet = 0x0000;
+			frequencySet = DEFAULT_SELECTION;
 			break;
 		case MHZ_2_67:
 			frequencySet = DCOFSEL0;
@@ -37,17 +38,17 @@ void set_digital_clock_frequency(uint8_t frequency){
 			frequencySet = DCOFSEL1 | DCOFSEL2;
 			break;
 		case MHZ_16:
-			frequencySet = DCOFSEL | DCOFSEL2;
+			frequencySet = DCORSEL | DCOFSEL2;
 			break;
 		case MHZ_21:
-			frequencySet = DCOFSEL | DCOFSEL0 | DCOFSEL2;
+			frequencySet = DCORSEL | DCOFSEL0 | DCOFSEL2;
 			break;
 		case MHZ_24:
-			frequencySet = DCOFSEL | DCOFSEL1 | DCOFSEL2;
+			frequencySet = DCORSEL | DCOFSEL1 | DCOFSEL2;
 			break;
 		default:
 			// by default select lowest frequency
-			frequencySet = 0x0000;
+			frequencySet = DEFAULT_SELECTION;
 			break;
 	}
 	CSCTL1 = frequencySet;
@@ -58,16 +59,16 @@ void select_ACLK_source(uint8_t source){
 	CSCTL2 &= ~(SELA0 | SELA1 | SELA2);
 	switch(source){
 		case LFXTCLK:
-			sourceSet |= 0x0000;
+			sourceSet = DEFAULT_SELECTION;
 			break;
 		case VLOCLK:
-			sourceSet |= SELA0;
+			sourceSet = SELA0;
 			break;
 		case LFMODCLK:
-			sourceSet |= SELA1;
+			sourceSet = SELA1;
 			break;
 		default:
-			sourceSet |= 0x0000;
+			sourceSet = DEFAULT_SELECTION;
 			break;
 	}
 	CSCTL2 |= sourceSet;
@@ -78,25 +79,25 @@ void select_MCLK_source(uint8_t source){
 	CSCTL2 &= ~(SELS0 | SELS1 | SELS2);
 	switch(source){
 		case LFXTCLK:
-			sourceSet |= 0x0000;
+			sourceSet = DEFAULT_SELECTION;
 			break;
 		case VLOCLK:
-			sourceSet |= SELS0;
+			sourceSet = SELS0;
 			break;
 		case LFMODCLK:
-			sourceSet |= SELS1;
+			sourceSet = SELS1;
 			break;
 		case DCOCLK:
-			sourceSet |= SELS0 | SELS1;
+			sourceSet = SELS0 | SELS1;
 			break;
 		case MODCLK:
-			sourceSet |= SELS2;
+			sourceSet = SELS2;
 			break;
 		case HFXTCLK:
-			sourceSet |= SELS0 | SELS2;
+			sourceSet = SELS0 | SELS2;
 			break;
 		default:
-			sourceSet |= 0x0000;
+			sourceSet = DEFAULT_SELECTION;
 			break;
 	}
 	CSCTL2 |= sourceSet;
@@ -107,25 +108,25 @@ void select_SMCLK_source(uint8_t source){
 	CSCTL2 &= ~(SELM0 | SELM1 | SELM2);
 	switch(source){
 		case LFXTCLK:
-			sourceSet |= 0x0000;
+			sourceSet = DEFAULT_SELECTION;
 			break;
 		case VLOCLK:
-			sourceSet |= SELM0;
+			sourceSet = SELM0;
 			break;
 		case LFMODCLK:
-			sourceSet |= SELM1;
+			sourceSet = SELM1;
 			break;
 		case DCOCLK:
-			sourceSet |= SELM0 | SELM1;
+			sourceSet = SELM0 | SELM1;
 			break;
 		case MODCLK:
-			sourceSet |= SELM2;
+			sourceSet = SELM2;
 			break;
 		case HFXTCLK:
-			sourceSet |= SELM0 | SELM2;
+			sourceSet = SELM0 | SELM2;
 			break;
 		default:
-			sourceSet |= 0x0000;
+			sourceSet = DEFAULT_SELECTION;
 			break;
 	}
 	CSCTL2 |= sourceSet;
@@ -136,7 +137,7 @@ void auxilary_clock_division_factor(uint8_t div){
 	CSCTL2 &= ~(DIVA0 | DIVA1 | DIVA2);
 	switch(div){
 		case FACTOR_1:
-			divSet = 0x0000;
+			divSet = DEFAULT_SELECTION;
 			break;
 		case FACTOR_2:
 			divSet = DIVA0;
@@ -154,7 +155,7 @@ void auxilary_clock_division_factor(uint8_t div){
 			divSet = DIVA2 | DIVA0;
 			break;
 		default:
-			divSet = 0x0000;
+			divSet = DEFAULT_SELECTION;
 			break;
 	}
 	CSCTL2 |= divSet;
@@ -165,7 +166,7 @@ void master_clock_division_factor(uint8_t div){
 	CSCTL2 &= ~(DIVM0 | DIVM1 | DIVM2);
 	switch(div){
 		case FACTOR_1:
-			divSet = 0x0000;
+			divSet = DEFAULT_SELECTION;
 			break;
 		case FACTOR_2:
 			divSet = DIVM0;
@@ -183,7 +184,7 @@ void master_clock_division_factor(uint8_t div){
 			divSet = DIVM2 | DIVM0;
 			break;
 		default:
-			divSet = 0x0000;
+			divSet = DEFAULT_SELECTION;
 			break;
 	}
 	CSCTL2 |= divSet;
@@ -194,7 +195,7 @@ void subsystem_clock_division_factor(uint8_t div){
 	CSCTL2 &= ~(DIVS0 | DIVS1 | DIVS2);
 	switch(div){
 		case FACTOR_1:
-			divSet = 0x0000;
+			divSet = DEFAULT_SELECTION;
 			break;
 		case FACTOR_2:
 			divSet = DIVS0;
@@ -212,7 +213,7 @@ void subsystem_clock_division_factor(uint8_t div){
 			divSet = DIVS2 | DIVS0;
 			break;
 		default:
-			divSet = 0x0000;
+			divSet = DEFAULT_SELECTION;
 			break;
 	}
 	CSCTL2 |= divSet;

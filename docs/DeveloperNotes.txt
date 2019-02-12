@@ -21,3 +21,29 @@ CLOCK SOURCES:
 	and ACLK(Auxillary Clock). most peripherals can be run off any of these clocks,
 	so they basically just mean that any 3 of the 5 options above can be operational
 	at any point in time.
+	
+LOW POWER MODES:
+	Low power modes can be controlled in a C based project by using the be defined functions in the msp chip header.
+	#define LPM0      __bis_SR_register(LPM0_bits)         /* Enter Low Power Mode 0 */
+	#define LPM0_EXIT __bic_SR_register_on_exit(LPM0_bits) /* Exit Low Power Mode 0 */
+	#define LPM1      __bis_SR_register(LPM1_bits)         /* Enter Low Power Mode 1 */
+	#define LPM1_EXIT __bic_SR_register_on_exit(LPM1_bits) /* Exit Low Power Mode 1 */
+	#define LPM2      __bis_SR_register(LPM2_bits)         /* Enter Low Power Mode 2 */
+	#define LPM2_EXIT __bic_SR_register_on_exit(LPM2_bits) /* Exit Low Power Mode 2 */
+	#define LPM3      __bis_SR_register(LPM3_bits)         /* Enter Low Power Mode 3 */
+	#define LPM3_EXIT __bic_SR_register_on_exit(LPM3_bits) /* Exit Low Power Mode 3 */
+	#define LPM4      __bis_SR_register(LPM4_bits)         /* Enter Low Power Mode 4 */
+	#define LPM4_EXIT __bic_SR_register_on_exit(LPM4_bits) /* Exit Low Power Mode 4 */
+	
+	All these low power modes turn the CPU off and therefor require a hardware reset/interrupt to regain functionality.
+	There are currently no other MCU's on here, so its likely that these modes wont be used, as we have no hardware triggers to wake it.
+	The only exception might be if the comms system were somehow connected such that the chip awoke whenever a command was issued, but this
+	could be a risk. It seems more likely that the way to conserve power would be to just switch to a lower frequency clock source. 
+	
+Bootloader (BSL):
+	The bootloader is a special segment of memory which can be invoked by a special hardware signal or by manually jumping to the address 0x1000
+	from within the executable code. The memory of the BSL is held in ROM and is password protected. This BSL's main potential lies with its ability
+	to repregram the firmware of the chip durring opperation. Feasably, the satilite can be reprogrammed from the ground while in orbit.
+	The steps required are given in the BSL support document which can be found in the docs section of this project. 
+	
+	
