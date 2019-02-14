@@ -46,4 +46,20 @@ Bootloader (BSL):
 	to repregram the firmware of the chip durring opperation. Feasably, the satilite can be reprogrammed from the ground while in orbit.
 	The steps required are given in the BSL support document which can be found in the docs section of this project. 
 	
+GPIO:
+	pg 368 of the family manual explains the proper order to configure the GPIO pins
+	after any type of reset.
+	
+	1 Initialize ports by
+		- selecting the direction of each pin with PxDIR register
+		- selecting the direction of the pull resistor with PxREN
+		- configure any output pins with their default state using PxOUT register
+		- select the direction of any pin interrupts if using interrupts using PxIES
+	2 Clear the LOCKLPM5 register to allow changes to the GPIO to take effect. 
+	3 Clear PxIFG register to clear the interrupt flags to avoid erronious port interrupts
+	4 Enable any desired interrupts with PxIE. 
+	
+	Any unused pins should be configured to their GPIO function and set as outputs.
+	The output drive is stated as dont care by the manual, but surely setting it
+	would require more energy than having it be cleared so thats whay i'ma do.   
 	

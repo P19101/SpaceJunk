@@ -25,6 +25,18 @@ typedef enum portSelection{
     PORT_4
 }GPIOPorts;
 
+typedef enum function{
+	DEFAULT_GPIO,
+	PRIMARY_MOD,
+	SECONDARY_MOD,
+	TERTIARY_MOD
+}GPIOfunctionSelect;
+
+typedef enum interruptEdge{
+	LOW_TO_HIGH,
+	HIGH_TO_LOW
+}GPIOInterruptEdge;
+
 /**
  * Read a digital pin for a selected port which is set as an input and return its value.
  * @param - uint8_t port: the port number for which the pin should be read.
@@ -51,7 +63,78 @@ uint8_t read_GPIO_output_pin(uint8_t port, uint8_t pin);
  */
 uint8_t read_GPIO_resistor_pull_direction(uint8_t port, uint8_t pin);
 
+/**
+ * Set a pin on the selected port.
+ * @param - uint8_t port: the port number for which the pin should be set.
+ * @param - uint8_t pin: the pin number to set in the chosen port.
+ * @return: None
+ */
+void set_GPIO_pin(uint8_t port, uint8_t pin);
 
+/**
+ * Clear a pin on the selected port.
+ * @param - uint8_t port: the port number for which the pin should be clear.
+ * @param - uint8_t pin: the pin number to clear in the chosen port.
+ * @return: None
+ */
+void clear_GPIO_pin(uint8_t port, uint8_t pin);
 
+/**
+ * Set the direction of the pin for the selected port as an output
+ * @param - uint8_t port: the port number for which pin should have its direction set.
+ * @param - uint8_t pin: the pin number to set the direction of in the chosen port.
+ * @return: None
+ */
+void set_GPIO_pin_output(uint8_t port, uint8_t pin);
+
+/** 
+ * Set the direction of the pin for the selected port as an input
+ * @param - uint8_t port: the port number for which pin should have its direction set.
+ * @param - uint8_t pin: the pin number to set the direction of in the chosen port.
+ * @return: None
+ */
+void set_GPIO_pin_input(uint8_t port, uint8_t pin);
+
+/**
+ * Chose the function mode for the selected pin on the selected port.
+ * @param - uint8_t port: the port number for which pin should have its direction set.
+ * @param - uint8_t pin: the pin number to set the direction of in the chosen port.
+ * @param - uint8_t function: the function to select for the pin. 
+ * @return: None
+ */
+void choose_GPIO_function(uint8_t port, uint8_t pin, uint8_t function);
+
+/**
+ * Chose the edge for an interrupt on the selected pin for the chosen port
+ * @param - uint8_t port: the port number for which pin should have its direction set.
+ * @param - uint8_t pin: the pin number to set the direction of in the chosen port.
+ * @param - uint8_t edge: the function to select for the pin. 
+ * @return: None
+ */
+void choose_interrupt_edge(uint8_t port, uint8_t pin, uint8_t edge);
+
+/**
+ * Enable interrupts for the chosen pin 
+ * @param - uint8_t port: the port number for which pin should have its direction set.
+ * @param - uint8_t pin: the pin number to set the direction of in the chosen port.
+ * @return: None
+ */
+void enable_GPIO_interrupt(uint8_t port, uint8_t pin);
+
+/**
+ * Disable interrupts for the chosen pin
+ * @param - uint8_t port: the port number for which pin should have its direction set.
+ * @param - uint8_t pin: the pin number to set the direction of in the chosen port.
+ * @return: None
+ */
+void disable_GPIO_interrupt(uint8_t port, uint8_t pin);
+
+/**
+ * Read the interrupt flag for the selected pin. 
+ * @param - uint8_t port: the port number for which pin should have its direction set.
+ * @param - uint8_t pin: the pin number to set the direction of in the chosen port.
+ * @return - uint8_t flag: the setting of the flag for the selected pin. 
+ */
+uint8_t read_GPIO_interrupt_flag(uint8_t port, uint8_t pin);
 
 #endif /* GPIO_H */
