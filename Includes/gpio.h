@@ -24,7 +24,8 @@ typedef enum portSelection{
     PORT_1,
     PORT_2,
     PORT_3,
-    PORT_4
+    PORT_4,
+	PORT_J
 }GPIOPorts;
 
 typedef enum function{
