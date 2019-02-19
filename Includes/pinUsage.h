@@ -76,7 +76,7 @@
 /*******************************GPIO SETTINGS**********************************/
 
 // ALL PINS WHICH SHOULD BE SET TO OUTPUTS FOR EACH PORT.
-#define PORT_1_OUTPUTS {PIN6, DEFAULT_SELECTION}
+#define PORT_1_OUTPUTS {PIN_6, DEFAULT_SELECTION}
 
 
 
