@@ -4,8 +4,8 @@
  * @brief File containing functions for the 12 bit ADC
  */
 
-#include "includes/ADC12Bit.h"
-#include "includes/commonHeader.h"
+#include "ADC12Bit.h"
+#include "commonHeader.h"
 /********************************************************* ADC CONTROL REGISTER 0 ****************************************************************/
 void start_adc_conversion(void){
     ADC12CTL0 |= ADC12SC; // toggle the conversion bit to begin conversion with the 12 bit ADC

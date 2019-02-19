@@ -7,8 +7,7 @@
 #ifndef ADC12BIT_H_
 #define ADC12BIT_H_
 
-#include <stdint.h>
-#include <msp430fr5969.h>
+#include "commonHeader.h"
 
 /* 
  * Used to define the number of ADC12CLK cycles in the sampling period. 

@@ -4,8 +4,8 @@
  * @brief File containing function for programming the GPIO ports
  */
 
-#include "includes/gpio.h"
-#include "includes/commonHeader.h"
+#include "gpio.h"
+#include "commonHeader.h"
 
 
 uint8_t read_GPIO_input_pin(uint8_t port, uint8_t pin){
@@ -182,7 +182,7 @@ void choose_GPIO_function(uint8_t port, uint8_t pin, uint8_t function){
         case PORT_3:
             switch(function){
 				case DEFAULT_GPIO:
-					P3EL0 &= ~(pin);
+					P3SEL0 &= ~(pin);
 					P3SEL1 &= ~(pin);
 					break;
 				case PRIMARY_MOD:
@@ -233,7 +233,7 @@ void choose_GPIO_function(uint8_t port, uint8_t pin, uint8_t function){
 }
 
 void choose_interrupt_edge(uint8_t port, uint8_t pin, uint8_t edge){
-	switch port{
+	switch(port){
 		case PORT_1:
 			if(edge){
 				P1IES |= pin;

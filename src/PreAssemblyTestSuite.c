@@ -7,7 +7,7 @@
 #include <msp430fr5969.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "includes/ADC12bit.h"
+#include "ADC12bit.h"
 
 void init_pins(){
     WDTCTL = WDTPW | WDTHOLD;               // Stop watchdog timer

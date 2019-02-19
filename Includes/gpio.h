@@ -7,6 +7,8 @@
 #ifndef GPIO_H
 #define GPIO_H
 
+#include "commonHeader.h"
+
 typedef enum pinNumbers{
     PIN_1 = 0x01,
     PIN_2 = 0x02,

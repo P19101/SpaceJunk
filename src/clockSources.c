@@ -5,8 +5,8 @@
  *		adjusting these values can have a large inpact on the performance of all subsystems.
  */
 
-#include "includes/clockSources.h"
-#include "includes/commonHeader.h"
+#include "clockSources.h"
+#include "commonHeader.h"
  
 void unlock_CS_register_set(void){
 	CSCTL0 |= CSKEY;

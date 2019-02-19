@@ -8,8 +8,8 @@
 #ifndef CLOCK_SOURCES_H
 #define CLOCK_SOURCES_H 
  
-#include <stdint.h>
-#include <msp430fr5969.h>
+#include "commonHeader.h"
+
 
 // idk why its called password if its preset and in a manual, i guess just so 
 // you dont accidentally change all the clock sources?
