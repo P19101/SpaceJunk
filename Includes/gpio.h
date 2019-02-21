@@ -40,6 +40,11 @@ typedef enum interruptEdge{
 	HIGH_TO_LOW
 }GPIOInterruptEdge;
 
+typedef enum pullResistorDirection{
+    PULL_DOWN = 0x00,
+    PULL_UP = 0x01
+}GPIOPullResistoredDirection;
+
 /**
  * Read a digital pin for a selected port which is set as an input and return its value.
  * @param - uint8_t port: the port number for which the pin should be read.
@@ -65,6 +70,19 @@ uint8_t read_GPIO_output_pin(uint8_t port, uint8_t pin);
  *      1 - the resistor is configured as a pull up connection
  */
 uint8_t read_GPIO_resistor_pull_direction(uint8_t port, uint8_t pin);
+
+/**
+ * Set the direction of the pull resistor as either a pull up or pull down resistor
+ * The use of this function is determined by if the pull resistor is enabled or not.
+ * Enable with the enable_GPIO_pin_pull_resistor function.
+ * @param - uint8_t port: the port number for which the pin should be set.
+ * @param - uint8_t pin: the pin number to set in the chosen port.
+ * @param - uint8_t pullDirection: the pull direction of the resistor.
+ *      0 - PULL DOWN
+ *      1 - PULL UP
+ * @return: None
+ */
+void set_GPIO_resistor_pull_direction(uint8_t port, uint8_t pin, uint8_t pullDirection);
 
 /**
  * Set a pin on the selected port.
@@ -97,6 +115,23 @@ void set_GPIO_pin_output(uint8_t port, uint8_t pin);
  * @return: None
  */
 void set_GPIO_pin_input(uint8_t port, uint8_t pin);
+
+/**
+ * Enable pull resistors for the selected GPIO pin. The direction is set by the
+ * set_GPIO_resistor_pull_direction function.
+ * @param - uint8_t port: the port number for which pin should have its direction set.
+ * @param - uint8_t pin: the pin number to set the direction of in the chosen port.
+ * @return: None
+ */
+void enable_GPIO_pin_pull_resistor(uint8_t port , uint_t pin);
+
+/**
+ * Disable the pull resistor for the selected GPIO pin.
+ * @param - uint8_t port: the port number for which pin should have its direction set.
+ * @param - uint8_t pin: the pin number to set the direction of in the chosen port.
+ * @return: None
+ */
+void disable_GPIO_pin_pull_resistor(uint8_t port , uint8_t pin);
 
 /**
  * Chose the function mode for the selected pin on the selected port.
