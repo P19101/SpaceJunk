@@ -62,6 +62,7 @@ void set_GPIO_resistor_pull_direction(uint8_t port, uint8_t pin, uint8_t pullDir
             else{
                 P1OUT &= ~pin;
             }
+            break;
         case PORT_2:
             if(pullDirection){
                 P2OUT |= pin;
@@ -69,6 +70,7 @@ void set_GPIO_resistor_pull_direction(uint8_t port, uint8_t pin, uint8_t pullDir
             else{
                 P2OUT &= ~pin;
             }
+            break;
         case PORT_3:
             if(pullDirection){
                 P3OUT |= pin;
@@ -76,6 +78,7 @@ void set_GPIO_resistor_pull_direction(uint8_t port, uint8_t pin, uint8_t pullDir
             else{
                 P3OUT &= ~pin;
             }
+            break;
         case PORT_4:
             if(pullDirection){
                 P4OUT |= pin;
@@ -83,7 +86,9 @@ void set_GPIO_resistor_pull_direction(uint8_t port, uint8_t pin, uint8_t pullDir
             else{
                 P4OUT &= ~pin;
             }
+            break;
         default:
+            break;
     }
 }
 

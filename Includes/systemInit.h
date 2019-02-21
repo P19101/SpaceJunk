@@ -28,9 +28,29 @@ void set_port_output_pins(void);
  * during executable code stage, use the corresponding GPIO function: disable_GPIO_pin_pull_resistor.
  * The list of pins which will have pull resistors enabled is determined by the four corresponding
  * macros in the pinUsage.h header file
+ * NOTE: ALL UNUSED PINS SHOULD BE SET AS OUTPUT PINS PER THE MANUAL.
  * @param: None
  * @return: None
  */
 void enable_port_pull_resistors(void);
+
+/**
+ * Set all outputs which should be high from the start of code execution. This often includes certain comm
+ * enabling pins or pins which are active low and should be disabled by default. To toggle the state of output
+ * pins during executable code use the GPIO functions: set_GPIO_pin and clear_GPIO_pin. The list of pins which
+ * will have their reset state as high is determined by the four corresponding macros in the pinUsage.h header file.
+ * @param: None
+ * @return: None
+ */
+void set_outputs_high(void);
+
+/**
+ * Set all GPIO pins to their desired reset functionality. All pins which are not selected will be set as GPIO outputs by
+ * default. The pins operating under their primary, secondary or tertiary functionality should be listed in their corrisponding
+ * macro in the pinUsage.h header file.
+ * @param: None
+ * @return: None
+ */
+void set_pin_functions(void);
 
 #endif

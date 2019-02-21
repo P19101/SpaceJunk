@@ -10,14 +10,14 @@
 #include "commonHeader.h"
 
 typedef enum pinNumbers{
-    PIN_1 = 0x01,
-    PIN_2 = 0x02,
-    PIN_3 = 0x04,
-    PIN_4 = 0x08,
-    PIN_5 = 0x10,
-    PIN_6 = 0x20,
-    PIN_7 = 0x40,
-    PIN_8 = 0x80
+    PIN_0 = 0x01,
+    PIN_1 = 0x02,
+    PIN_2 = 0x04,
+    PIN_3 = 0x08,
+    PIN_4 = 0x10,
+    PIN_5 = 0x20,
+    PIN_6 = 0x40,
+    PIN_7 = 0x80
 }GPIOPins;
 
 typedef enum portSelection{
@@ -123,7 +123,7 @@ void set_GPIO_pin_input(uint8_t port, uint8_t pin);
  * @param - uint8_t pin: the pin number to set the direction of in the chosen port.
  * @return: None
  */
-void enable_GPIO_pin_pull_resistor(uint8_t port , uint_t pin);
+void enable_GPIO_pin_pull_resistor(uint8_t port , uint8_t pin);
 
 /**
  * Disable the pull resistor for the selected GPIO pin.
