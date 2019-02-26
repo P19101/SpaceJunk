@@ -1,4 +1,4 @@
-/*
+/**
  * @file gpio.h
  * @author Nathan Lindberg (nml6520@g.rit.edu)
  * @brief File containing function definitions for programming the GPIO ports
