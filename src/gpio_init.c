@@ -96,7 +96,7 @@ void set_pull_up_resistors(void){
 	int port_4_pulls[] = PORT_4_PULL_UP;
 	
 	uint8_t i = 0;
-	int current pin;
+	int current_pin;
 	//PORT1
 	current_pin = port_1_pulls[i];
     while(current_pin != DEFAULT_SELECTION){
@@ -365,4 +365,12 @@ void set_interrupts_edges(void){
         choose_interrupt_edge(PORT_4, current_pin, HIGH_TO_LOW);
         current_pin = port_4_edge[++i];
     }
+}
+
+void clear_interrupt_flags(void){
+    // write all zeros to all flags to clear
+    P1IFG = DEFAULT_SELECTION;
+    P2IFG = DEFAULT_SELECTION;
+    P3IFG = DEFAULT_SELECTION;
+    P4IFG = DEFAULT_SELECTION;
 }

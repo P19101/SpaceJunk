@@ -26,4 +26,12 @@ void configure_sys(void);
  */
 void configure_GIPO(void);
 
+/**
+ * Function to setup all defaults for the ADC
+ * NOTE: Does not enable or power the ADC by default to save power until it is needed.
+ * @param: None
+ * @return: None
+ */
+void configure_ADC(void);
+
 #endif

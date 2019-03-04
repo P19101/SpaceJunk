@@ -10,6 +10,7 @@
 
 #include "commonHeader.h"
 #include "gpio.h"
+#include "ADC12Bit.h"
 
 /**
  * Define the specific ports which different system use.
@@ -73,7 +74,7 @@
 //Analog Ground Supply					// 47	- AVSS
 //Analog Power Supply					// 48 	- AVCC
 
-/*******************************GPIO SETTINGS**********************************/
+/*******************************GPIO SETTINGS************************************/
 
 // ALL PINS WHICH SHOULD BE SET TO OUTPUTS FOR EACH PORT.
 // any unused pins should also be set as an output and left unconnected, the drive
@@ -133,5 +134,26 @@
 #define PORT_3_EDGES {DEFAULT_SELECTION}
 #define PORT_4_EDGES {DEFAULT_SELECTION}
 
-/******************************************************************************/
+/********************************************************************************/
+
+/********************************ADC SETTINGS************************************/
+// DEFAULT MULTISAMPLING HOLD TIME FOR ALL ADC MEM REGISTERS
+#define ADC_MULTISAMPLE_HOLD_TIME   HOLD_FOUR
+
+// DEFAULT SAMPLING MODE FOR ADC CONVERSIONS
+#define ADC_SAMPLING_MODE   MULTI_CHANNEL_REPEAT_CONVERSION
+
+// DEFAULT ADC CLOCK SOURCE
+#define ADC_CLOCK_SOURCE    ADC_OSCILLATOR
+
+// DEFAULT ADC CLOCK SOURCE DIVIDERS
+#define ADC_PRIMARY_DIVIDER     ADC_PRE_DIV_1
+#define ADC_SECONDARY_DIVIDER   ADC_DIV_1
+
+// DEFAULT TRIGGER SOURCE
+#define ADC_TRIGGER             SOFTWARE_SOURCE
+
+// DEFAULT ADC RESOLUTION
+#define ADC_RESOLUTION      ADC_12BIT_RES
+/********************************************************************************/
 #endif

@@ -80,4 +80,12 @@ void enable_pin_interrupts(void);
  */
 void set_interrupts_edges(void);
 
-#end if
+/**
+ * Clear all interrupts flags after reset to avoid erroneous interrupts.
+ * @param: None
+ * @return: None
+ */
+void clear_interrupt_flags(void);
+
+
+#endif
