@@ -67,6 +67,16 @@ typedef enum timerAOutmode{
 	RESET_SET
 }timerAOutputModeSelect;
 
+typedef enum timerAChannels{
+    CHANNEL_0
+    CHANNEL_1,
+    CHANNEL_2,
+    CHANNEL_3,
+    CHANNEL_4,
+    CHANNEL_5,
+    CHANNEL_6
+}timerACaptureCompareChannels;
+
 typedef enum timerAExpasionDiv{
 	TA_EXDIV_1,
 	TA_EXDIV_2,
@@ -75,7 +85,7 @@ typedef enum timerAExpasionDiv{
 	TA_EXDIV_5,
 	TA_EXDIV_6,
 	TA_EXDIV_7,
-	TA_EXDIV_8,
+	TA_EXDIV_8
 }TimerAExpansionDivider;
 /**
  * Select the clock source for the specific timer A type
@@ -83,7 +93,7 @@ typedef enum timerAExpasionDiv{
  * @param - uint8_t clockSource: the source for the selected timer. 
  * @return: None
  */
-void select_timer_Ax_clock_source(uint8_t timerNum, uint8_t clockSource);
+void select_clock_source_timer_Ax(uint8_t timerNum, uint8_t clockSource);
 
 /** 
  * Select the initial input divider for the specified timer. 
@@ -149,7 +159,7 @@ uint16_t read_timer_count_value_timer_Ax(uint8_t timerNum);
  * @param - uint8_t captureEdge: the edge enum used for capturing the input signal
  * @return: None
  */
-void set_capture_mode_timer_Ax(uint8_t timerNum, uint8_t captureEdge);
+void set_capture_mode_timer_Ax(uint8_t timerNum, uint8_t captureEdge, uint8_t captureChannel);
 
 /**
  * select the input source for the capture and compare register CCR0
@@ -157,7 +167,7 @@ void set_capture_mode_timer_Ax(uint8_t timerNum, uint8_t captureEdge);
  * @param - uint8_t inputSource: the input source for the capture compare register
  * @return: None
  */
-void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t captureEdge);
+void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t captureEdge, uint8_t captureChannel);
 
 /**
  * Select if the input source should be synchronized
@@ -173,5 +183,5 @@ void select_input_source_sychronisity_timer_Ax(uint8_t timerNum, uint8_t synchro
  * @param - uint8_t timerNum: the specific type A timer reference
  * @return - uint8_t synchBit: the polarity of the synchronized bit. 
  */
-void read_synchronized_bit(uint8_t timerNum);
+void read_synchronized_bit_timer_Ax(uint8_t timerNum);
 
