@@ -14,49 +14,49 @@
 
 #include "commonHeader.h"
 
-typedef enum timerAlist{
+typedef enum {
 	TIM_A_0,
 	TIM_A_1,
 	TIM_A_2,
 	TIM_A_3
 }timerAList;
 
-typedef enum timerASource{
+typedef enum {
 	TAxCLK,
 	TMRA_ACLK,
 	TMRA_SMCLK,
 	TMRA_INCLK
 }timerAClockSource;
 
-typedef enum timerAinDivider{
+typedef enum {
 	TA_DIV_1,
 	TA_DIV_2,
 	TA_DIV_4,
 	TA_DIV_8
 }timerAInputDivider;
 
-typedef enum timerAcountDir{
+typedef enum {
 	STOP_MODE,
 	UP_MODE,
 	CONTINUOUS_MODE,
 	UP_DOWN_MODE
 }timerACountDirection;
 
-typedef enum timerAcaptureMode{
+typedef enum {
 	NO_CAPTURE,
 	RISING_EDGE,
 	FALLING_EDGE,
 	DOUBLE_EDGE
 }timerACaptureMode;
 
-typedef enum timerACCinputSel{
+typedef enum {
 	INPUT_A,
 	INPUT_B,
 	INPUT_GND,
 	INPUT_VCC
 }timerACaptureCompareInputSelect;
 
-typedef enum timerAOutmode{
+typedef enum {
 	OUT_BIT,
 	SET,
 	TOGGLE_RESET,
@@ -67,7 +67,7 @@ typedef enum timerAOutmode{
 	RESET_SET
 }timerAOutputModeSelect;
 
-typedef enum timerAChannels{
+typedef enum {
     CHANNEL_0
     CHANNEL_1,
     CHANNEL_2,
@@ -77,7 +77,7 @@ typedef enum timerAChannels{
     CHANNEL_6
 }timerACaptureCompareChannels;
 
-typedef enum timerAExpasionDiv{
+typedef enum {
 	TA_EXDIV_1,
 	TA_EXDIV_2,
 	TA_EXDIV_3,

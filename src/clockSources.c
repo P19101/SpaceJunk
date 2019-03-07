@@ -218,3 +218,197 @@ void subsystem_clock_division_factor(uint8_t div){
 	}
 	CSCTL2 |= divSet;
 }
+
+void high_freq_crystal_drive_strength(uint8_t drive){
+	CSCTL4 &= ~(HFXTDRIVE1 | HFXTDRIVE0);
+	switch(drive){
+		case HF_DRIVE_LV_1:
+			CSCTL4 |= HFXTDRIVE_0;
+			break;
+		case HF_DRIVE_LV_2:
+			CSCTL4 |= HFXTDRIVE_1;
+			break;
+		case HF_DRIVE_LV_3:
+			CSCTL4 |= HFXTDRIVE_2;
+			break;
+		case HF_DRIVE_LV_4:
+			CSCTL4 |= HFXTDRIVE_3;
+			break;
+	}
+}
+
+void high_freq_clk_bypass_enable(void){
+	CSCTL4 |= HFXTBYPASS;
+}
+
+void high_freq_clk_bypass_diable(void){
+	CSCTL4 &= ~(HFXTBYPASS);
+}
+
+void high_freq_clk_range(uint8_t freq){
+	CSCTL4 &= ~(HFFREQ1 | HFFREQ0);
+	swtich(freq){
+		case HF_0_TO_4_MHZ:
+			CSCTL4 |= HFFREQ_0;
+			break;
+		case HF_4_TO_8_MHZ:
+			CSCTL4 |= HFFREQ_1;
+			break;
+		case HF_8_TO_16_MHZ:
+			CSCTL4 |= HFFREQ_2;
+			break;
+		case HF_16_TO_24_MHZ:
+			CSCTL4 |= HFFREQ_3;
+			break;
+	}
+}
+
+void high_freq_clk_on_off(uint8_t enable){
+	if(enable){
+		CSCTL4 |= HFXTOFF;
+	}
+	else{
+		CSCTL4 &= ~(HFXTOFF);
+	}
+}
+
+void low_frequency_clk_drive_strength(uint8_t drive){
+	CSCTL4 &= ~(LFXTDRIVE1 | LFXTDRIVE0);
+	switch(drive){
+		case LF_DRIVE_LV_1:
+			CSCTL4 |= LFXTDRIVE_0;
+			break;
+		case LF_DRIVE_LV_2:
+			CSCTL4 |= LFXTDRIVE_1;
+			break;
+		case LF_DRIVE_LV_3:
+			CSCTL4 |= LFXTDRIVE_2;
+			break;
+		case LF_DRIVE_LV_4:
+			CSCTL4 |= LFXTDRIVE_3;
+			break;
+	}
+}
+
+void low_frequency_clk_bypass_enable(void){
+	CSCTL4 |= LFXTBYPASS;
+}
+
+void low_frequency_clk_bypass_disable(void){
+	CSCTL4 &= ~(LFXTBYPASS);
+}
+
+void low_frequency_clk_on_off(uint8_t enable){
+	if(enable){
+		CSCTL4 |= LFXTOFF;
+	}
+	else{
+		CSCTL4 &= ~(LFXTOFF);
+	}
+}
+
+void very_low_clk_on_off(uint8_t enable){
+	if(enable){
+		CSCTL4 |= VLOOFF;
+	}
+	else{
+		CSCTL4 &= ~(VLOOFF);
+	}
+}
+
+void subsystem_master_clk_on_off(uint8_t enable){
+	if(enable){
+		CSCTL4 |= SMCLKOFF;
+	}
+	else{
+		CSCTL4 &= ~(SMCLKOFF);
+	}
+}
+
+void high_frequency_clock_start_counter(uint8_t enable){
+	if(enable){
+		CSCTL5 |= ENSTFCNT2;
+	}
+	else{
+		CSCTL5 &= ~(ENSTFCNT2);
+	}
+}
+
+void low_frequency_clock_start_counter(uint8_t enable){
+	if(enable){
+		CSCTL5 |= ENSTFCNT1;
+	}
+	else{
+		CSCTL5 &= ~(ENSTFCNT1);
+	}
+}
+
+uint8_t read_high_frequency_fault_flag(void){
+	uint8_t flag;
+	flag = CSCTL5 & HFXTOFFG;
+	CSCTL5 &= ~(HFXTOFFG);
+	return flag;
+}
+
+uint8_t read_low_frequency_fault_flag(void){
+	uint8_t flag;
+	flag = CSCTL5 & LFXTOFFG;
+	CSCTL5 &= ~(LFXTOFFG);
+	return flag;
+}
+
+void mod_clk_conditional_req_on_off(uint8_t enable){
+	if(enable){
+		CSCTL6 |= MODCLKREQEN;
+	}
+	else{
+		CSCTL6 &= ~(MODCLKREQEN);
+	}
+}
+
+void sub_sys_clk_conditional_req_on_off(uint8_t enable){
+	if(enable){
+		CSCTL6 |= MODCLKREQEN;
+	}
+	else{
+		CSCTL6 &= ~(MODCLKREQEN);
+	}
+}
+
+void master_clk_conditional_req_on_off(uint8_t enable){
+	if(enable){
+		CSCTL6 |= MODCLKREQEN;
+	}
+	else{
+		CSCTL6 &= ~(MODCLKREQEN);
+	}
+}
+
+void auxilary_clk_conditional_req_on_off(uint8_t enable){
+	if(enable){
+		CSCTL6 |= MODCLKREQEN;
+	}
+	else{
+		CSCTL6 &= ~(MODCLKREQEN);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

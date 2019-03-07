@@ -14,7 +14,7 @@
  * This is used when the ADC is in pulse sampling mode, and defines the lenght of
  * each sample in multiples of 4 * ADC12CLK.
  */
-typedef enum adcHoldTimes{
+typedef enum {
     HOLD_FOUR,
     HOLD_EIGHT,
     HOLD_SIXTEEN,
@@ -42,7 +42,7 @@ typedef enum adcHoldTimes{
  * stored to their respective memory registers. Once again, these results are overwritten
  * if they are not read before the next conversion is complete. 
  */
-typedef enum conversionSequences{
+typedef enum {
     SINGLE_CHANNEL_SINGLE_CONVERSION,
     MULTI_CHANNEL_SINGLE_CONVERSION,
     SINGLE_CHANNEL_REPEAT_CONVERSION,
@@ -54,7 +54,7 @@ typedef enum conversionSequences{
  * options being other clock sources which are available on the chip. Be aware of
  * the maximum clock frequency of the ADC before selecting a clock. 
  */
-typedef enum clockSources{
+typedef enum {
     ADC_OSCILLATOR,
     ACLOCK,
     MCLOCK,
@@ -65,7 +65,7 @@ typedef enum clockSources{
  * The secondary divider provides an additional way to divide down the clock input to
  * reduce the ADCCLK frequency and potentially save power.
  */
-typedef enum secondaryDivider{
+typedef enum {
     ADC_DIV_1,
     ADC_DIV_2,
     ADC_DIV_3,
@@ -81,7 +81,7 @@ typedef enum secondaryDivider{
  * ADC12SC bit in the ADC12CTL0 register, which can be set in software. 
  * Other triggers are connected to external pins.
  */
-typedef enum sampleStartSource{
+typedef enum {
     SOFTWARE_SOURCE,
     TA0_CCR1,
     TB0_CCR0,
@@ -95,7 +95,7 @@ typedef enum sampleStartSource{
  * The initial divider used to scale down the ADC clock frequency, primarily used
  * to save power, or if the clock source selected is above the maximum for the device.
  */
-typedef enum predivider{
+typedef enum {
     ADC_PRE_DIV_1,
     ADC_PRE_DIV_4,
     ADC_PRE_DIV_32,
@@ -106,7 +106,7 @@ typedef enum predivider{
  * select the number of bits used for the sampling of the signal. A higher number of bits
  * means a more accurate sample, but also will take longer to convert.
  */
-typedef enum resolution{
+typedef enum {
     ADC_8BIT_RES,
     ADC_10BIT_RES,
     ADC_12BIT_RES

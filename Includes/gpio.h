@@ -9,7 +9,7 @@
 
 #include "commonHeader.h"
 
-typedef enum pinNumbers{
+typedef enum {
     PIN_0 = 0x01,
     PIN_1 = 0x02,
     PIN_2 = 0x04,
@@ -20,7 +20,7 @@ typedef enum pinNumbers{
     PIN_7 = 0x80
 }GPIOPins;
 
-typedef enum portSelection{
+typedef enum {
     PORT_1,
     PORT_2,
     PORT_3,
@@ -28,19 +28,19 @@ typedef enum portSelection{
 	PORT_J
 }GPIOPorts;
 
-typedef enum function{
+typedef enum {
 	DEFAULT_GPIO,
 	PRIMARY_MOD,
 	SECONDARY_MOD,
 	TERTIARY_MOD
 }GPIOfunctionSelect;
 
-typedef enum interruptEdge{
+typedef enum {
 	LOW_TO_HIGH,
 	HIGH_TO_LOW
 }GPIOInterruptEdge;
 
-typedef enum pullResistorDirection{
+typedef enum {
     PULL_DOWN = 0x00,
     PULL_UP = 0x01
 }GPIOPullResistoredDirection;
