@@ -8,7 +8,10 @@
 #ifndef SYSTEM_INIT_H
 #define SYSTEM_INIT_H
 
-#include "gpio_init.h"
+#include "gpioInit.h"
+#include "pinUsage.h"
+#include "adc12Bit.h"
+#include "clockSourcesInit.h"
 
 /**
  * Master function which will call all corrisponding configuration functions.
@@ -33,5 +36,12 @@ void configure_GIPO(void);
  * @return: None
  */
 void configure_ADC(void);
+
+/** 
+ * Calls all default configuration functions for the system clock sources. 
+ * @param: None
+ * @return: None
+ */
+void configure_clock_sources(void);
 
 #endif

@@ -6,7 +6,6 @@
  * 		pinUsage.h
  */
  
-#include "pinUsage.h"
 #include "gpio_init.h"
 
 void set_port_output_pins(void){

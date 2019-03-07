@@ -254,7 +254,6 @@ uint8_t read_high_frequency_fault_flag(void);
  * @return - uint8_t fault: indicates the vaule of the low frequency fault flag.
  */
 uint8_t read_low_frequency_fault_flag(void);
-#endif
 
 /**
  * determines if the MODCLK can be requested by subsystems directly even when it is normally
@@ -289,7 +288,7 @@ void master_clk_conditional_req_on_off(uint8_t enable);
 void auxilary_clk_conditional_req_on_off(uint8_t enable);
 
 
-
+#endif
 
 
 

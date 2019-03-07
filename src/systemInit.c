@@ -4,14 +4,13 @@
  * @brief File which utilizes the settings of pinUsage.h to initialize the system
  * 		after a standard reset event. 
  */
- 
-#include "pinUsage.h"
 #include "systemInit.h"
-#include "ADC12Bit.h"
+
 
 void configure_sys(void){
 	configure_GIPO();
 	configure_ADC();
+	configure_clock_sources();
 }
 
 void configure_GIPO(void){
@@ -37,5 +36,17 @@ void configure_ADC(void){
     set_ADC_secondary_divider(ADC_SECONDARY_DIVIDER);
     set_ADC_sample_trigger_source(ADC_TRIGGER);
     set_ADC_resolution(ADC_RESOLUTION);
+}
+
+void configure_clock_sources(void){
+	// unlocking the CS registers must always be the first step. 
+	unlock_CS_register_set();	
+	diabled_conditional_request();
+	diabled_clock_signals();
+	high_low_freq_drive_strengths();
+	default_clock_divisors();
+	default_clock_sources();
+	high_freq_clk_range(HIGH_FREQ_RANGE);
+	set_digital_clock_frequency(DIGITAL_CLK_FREQ);
 }
 	

@@ -11,6 +11,7 @@
 
 #include "commonHeader.h"
 #include "gpio.h"
+#include "pinUsage.h"
 
 /**
  * set all of the pins which should be configured as outputs after a reset event. There is
