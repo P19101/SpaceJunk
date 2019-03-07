@@ -11,6 +11,7 @@
 #include "commonHeader.h"
 #include "gpio.h"
 #include "ADC12Bit.h"
+#include "clockSources.h"
 
 /**
  * Define the specific ports which different system use.
@@ -55,8 +56,8 @@
 										// 28 	- P3.5
 										// 29 	- P3.6
 										// 30 	- P3.7
-#define MOTOR_PWM			PIN_6		// 31	- P1.6
-										// 32 	- P1.7
+#define MOTOR_PWM_1			PIN_6		// 31	- P1.6
+#define MOTOR_PWM_2         PIN_7	    // 32 	- P1.7
 										// 33 	- P4.4
 										// 34 	- P4.5
 										// 35	- P4.6
@@ -79,28 +80,32 @@
 // ALL PINS WHICH SHOULD BE SET TO OUTPUTS FOR EACH PORT.
 // any unused pins should also be set as an output and left unconnected, the drive
 // direction is not important. 
-#define PORT_1_OUTPUTS {PIN_0, PIN_4, PIN_5, PIN_6, PIN_7, DEFAULT_SELECTION}//TODO: remove pin 0, added for testing.
+#define PORT_1_OUTPUTS {PIN_4, PIN_5, PIN_6, PIN_7, DEFAULT_SELECTION}
 #define PORT_2_OUTPUTS {PIN_0, PIN_1, PIN_2, PIN_3, PIN_4, PIN_5, PIN_6, PIN_7, DEFAULT_SELECTION}
 #define PORT_3_OUTPUTS {PIN_0, PIN_1, PIN_2, PIN_3, PIN_4, PIN_5, PIN_6, PIN_7, DEFAULT_SELECTION}
 #define PORT_4_OUTPUTS {PIN_0, PIN_1, PIN_2, PIN_3, PIN_4, PIN_5, PIN_6, PIN_7, DEFAULT_SELECTION}
+#define PORT_J_OUTPUTS {DEFAULT_SELECTION}
 
 // ALL INPUT PIN WHICH SHOULD HAVE A PULL RESISTOR.
 #define PORT_1_PULLED_PINS {DEFAULT_SELECTION}
 #define PORT_2_PULLED_PINS {DEFAULT_SELECTION}
 #define PORT_3_PULLED_PINS {DEFAULT_SELECTION}
 #define PORT_4_PULLED_PINS {DEFAULT_SELECTION}
+#define PORT_J_PULLED_PINS {DEFAULT_SELECTION}
 
 // FOR ANY PINS WITH PULL ENABLED ABOVE, SELECT ANY WHICH SHOULD HAVE PULL UP
 #define PORT_1_PULL_UP {DEFAULT_SELECTION}
 #define PORT_2_PULL_UP {DEFAULT_SELECTION}
 #define PORT_3_PULL_UP {DEFAULT_SELECTION}
 #define PORT_4_PULL_UP {DEFAULT_SELECTION}
+#define PORT_J_PULL_UP {DEFAULT_SELECTION}
 
 // ALL PINS WHICH ARE OUTPUTS AND SHOULD HAVE THEIR DEFAULT STATE AS LOGIC '1'
 #define PORT_1_HIGHS {DEFAULT_SELECTION}
 #define PORT_2_HIGHS {DEFAULT_SELECTION}
 #define PORT_3_HIGHS {DEFAULT_SELECTION}
 #define PORT_4_HIGHS {DEFAULT_SELECTION}
+#define PORT_J_HIGHS {DEFAULT_SELECTION}
 
 // THE DESIRED RESET STATE FUNCTION FOR EACH GPIO PIN
 // no marcos are defined for pins which are set to the default GPIO settings as
@@ -109,16 +114,19 @@
 #define PORT_2_PRIMARIES    {DEFAULT_SELECTION}
 #define PORT_3_PRIMARIES    {DEFAULT_SELECTION}
 #define PORT_4_PRIMARIES    {DEFAULT_SELECTION}
+#define PORT_J_PRIMARIES    {DEFAULT_SELECTION}
 
 #define PORT_1_SECONDARIES  {DEFAULT_SELECTION}
 #define PORT_2_SECONDARIES  {DEFAULT_SELECTION}
 #define PORT_3_SECONDARIES  {DEFAULT_SELECTION}
 #define PORT_4_SECONDARIES  {DEFAULT_SELECTION}
+#define PORT_J_SECONDARIES  {DEFAULT_SELECTION}
 
-#define PORT_1_TERTIARIES   {PIN_1, PIN_2, PIN_3, PIN_6, DEFAULT_SELECTION}//TODO: add pin 0 removed for testing. 
+#define PORT_1_TERTIARIES   {PIN_0, PIN_1, PIN_2, PIN_3, PIN_6, PIN_7, DEFAULT_SELECTION}
 #define PORT_2_TERTIARIES   {DEFAULT_SELECTION}
 #define PORT_3_TERTIARIES   {DEFAULT_SELECTION}
 #define PORT_4_TERTIARIES   {DEFAULT_SELECTION}
+#define PORT_J_TERTIARIES   {DEFAULT_SELECTION}
 
 // ALL PINS WHICH SHOULD HAVE THEIR INTERRUPTS ENABLED
 // pin interrupts are disabled by default. 
@@ -126,6 +134,7 @@
 #define PORT_2_INTERRUPTS	{DEFAULT_SELECTION}
 #define PORT_3_INTERRUPTS	{DEFAULT_SELECTION}
 #define PORT_4_INTERRUPTS	{DEFAULT_SELECTION}
+#define PORT_J_INTERRUPTS   {DEFAULT_SELECTION}
 
 // FOR ANY PINS WITH INTERRUPTS ENABLED, SELECT ANY WHICH SHOULD HAVE HIGH-TO-LOW EDGES
 // by default the interrupt edge is low-to-high. 
@@ -133,6 +142,7 @@
 #define PORT_2_EDGES {DEFAULT_SELECTION}
 #define PORT_3_EDGES {DEFAULT_SELECTION}
 #define PORT_4_EDGES {DEFAULT_SELECTION}
+#define PORT_J_EDGES {DEFAULT_SELECTION}
 
 /********************************************************************************/
 
@@ -155,5 +165,28 @@
 
 // DEFAULT ADC RESOLUTION
 #define ADC_RESOLUTION      ADC_12BIT_RES
+/********************************************************************************/
+
+/*******************************CLOCK SOURCE*************************************/
+// DEFAULT DIGITAL CLOCK FREQUENCY
+#define DIGITAL_CLK_FREQ        MHZ_1
+
+// DEFAULT AUXILARY CLOCK SOURCE
+#define AUX_CLOCK_SOURCE        LFXTCLK
+
+// DEFAULT MASTER CLOCK SOURCE
+#define MASTER_CLK_SOURCE       MODCLK
+
+// DEFAULT SUBSYSTEM CLOCK SOURCE
+#define SUB_SYS_CLK_SOURCE      DCOCLK
+
+// DEFAULT AUX CLOCK DIVISION FACTOR
+#define AUX_CLK_DIV_FACTOR      FACTOR_1
+
+// DEFAULT MASTER CLOCK DIVISION FACTOR
+#define MASTER_CLK_DIV_FACTOR   FACTOR_1
+
+// DEFAULT SUBSYSTEM CLOCK DIVISION FACTOR
+#define SUB_SYS_CLK_DIV_FACTOR  FACTOR_1
 /********************************************************************************/
 #endif

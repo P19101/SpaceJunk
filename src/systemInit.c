@@ -11,7 +11,7 @@
 
 void configure_sys(void){
 	configure_GIPO();
-	//configure_ADC();
+	configure_ADC();
 }
 
 void configure_GIPO(void){

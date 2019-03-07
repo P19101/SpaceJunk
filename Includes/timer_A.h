@@ -167,7 +167,7 @@ void set_capture_mode_timer_Ax(uint8_t timerNum, uint8_t captureEdge, uint8_t ca
  * @param - uint8_t inputSource: the input source for the capture compare register
  * @return: None
  */
-void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t captureEdge, uint8_t captureChannel);
+void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t captureSource, uint8_t captureChannel);
 
 /**
  * Select if the input source should be synchronized
@@ -176,12 +176,12 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
  * 		with the timer input clock. 
  * @return: None
  */
-void select_input_source_sychronisity_timer_Ax(uint8_t timerNum, uint8_t synchronize);
+void select_input_source_sychronisity_timer_Ax(uint8_t timerNum, uint8_t synchronize, uint8_t captureChannel);
 
 /** 
  * Read the synchronized signal bit, if sychronized is selected. 
  * @param - uint8_t timerNum: the specific type A timer reference
  * @return - uint8_t synchBit: the polarity of the synchronized bit. 
  */
-void read_synchronized_bit_timer_Ax(uint8_t timerNum);
+void read_synchronized_bit_timer_Ax(uint8_t timerNum, uint8_t captureChannel);
 

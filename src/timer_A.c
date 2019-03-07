@@ -930,7 +930,7 @@ void set_capture_mode_timer_Ax(uint8_t timerNum, uint8_t captureEdge, uint8_t ca
     }
 }
 
-void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t captureEdge, uint8_t captureChannel){
+void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t captureSource, uint8_t captureChannel){
     switch(timerNum){
         case TIM_A_0:
             switch(captureChannel){
@@ -938,7 +938,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_0:
                     // Clear the bits first
                     TA0CCTL0 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA0CCTL0 |= CCIS_0;
                             break;
@@ -957,7 +957,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_1:
                     // Clear the bits first
                     TA0CCTL1 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA0CCTL1 |= CCIS_0;
                             break;
@@ -976,7 +976,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_2:
                     // Clear the bits first
                     TA0CCTL2 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA0CCTL2 |= CCIS_0;
                             break;
@@ -995,7 +995,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_3:
                     // Clear the bits first
                     TA0CCTL3 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA0CCTL3 |= CCIS_0;
                             break;
@@ -1014,7 +1014,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_4:
                     // Clear the bits first
                     TA0CCTL4 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA0CCTL4 |= CCIS_0;
                             break;
@@ -1033,7 +1033,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_5:
                     // Clear the bits first
                     TA0CCTL5 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA0CCTL5 |= CCIS_0;
                             break;
@@ -1052,7 +1052,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_6:
                     // Clear the bits first
                     TA0CCTL6 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA0CCTL6 |= CCIS_0;
                             break;
@@ -1076,7 +1076,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_0:
                     // Clear the bits first
                     TA1CCTL0 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA1CCTL0 |= CCIS_0;
                             break;
@@ -1095,7 +1095,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_1:
                     // Clear the bits first
                     TA1CCTL1 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA1CCTL1 |= CCIS_0;
                             break;
@@ -1114,7 +1114,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_2:
                     // Clear the bits first
                     TA1CCTL2 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA1CCTL2 |= CCIS_0;
                             break;
@@ -1133,7 +1133,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_3:
                     // Clear the bits first
                     TA1CCTL3 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA1CCTL3 |= CCIS_0;
                             break;
@@ -1152,7 +1152,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_4:
                     // Clear the bits first
                     TA1CCTL4 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA1CCTL4 |= CCIS_0;
                             break;
@@ -1171,7 +1171,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_5:
                     // Clear the bits first
                     TA1CCTL5 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA1CCTL5 |= CCIS_0;
                             break;
@@ -1190,7 +1190,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_6:
                     // Clear the bits first
                     TA1CCTL6 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA1CCTL6 |= CCIS_0;
                             break;
@@ -1214,7 +1214,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_0:
                     // Clear the bits first
                     TA2CCTL0 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA2CCTL0 |= CCIS_0;
                             break;
@@ -1233,7 +1233,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_1:
                     // Clear the bits first
                     TA2CCTL1 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA2CCTL1 |= CCIS_0;
                             break;
@@ -1252,7 +1252,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_2:
                     // Clear the bits first
                     TA2CCTL2 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA2CCTL2 |= CCIS_0;
                             break;
@@ -1271,7 +1271,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_3:
                     // Clear the bits first
                     TA2CCTL3 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA2CCTL3 |= CCIS_0;
                             break;
@@ -1290,7 +1290,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_4:
                     // Clear the bits first
                     TA2CCTL4 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA2CCTL4 |= CCIS_0;
                             break;
@@ -1309,7 +1309,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_5:
                     // Clear the bits first
                     TA2CCTL5 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA2CCTL5 |= CCIS_0;
                             break;
@@ -1328,7 +1328,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_6:
                     // Clear the bits first
                     TA2CCTL6 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA2CCTL6 |= CCIS_0;
                             break;
@@ -1352,7 +1352,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_0:
                     // Clear the bits first
                     TA3CCTL0 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA3CCTL0 |= CCIS_0;
                             break;
@@ -1371,7 +1371,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_1:
                     // Clear the bits first
                     TA3CCTL1 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA3CCTL1 |= CCIS_0;
                             break;
@@ -1390,7 +1390,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_2:
                     // Clear the bits first
                     TA3CCTL2 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA3CCTL2 |= CCIS_0;
                             break;
@@ -1409,7 +1409,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_3:
                     // Clear the bits first
                     TA3CCTL3 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA3CCTL3 |= CCIS_0;
                             break;
@@ -1428,7 +1428,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_4:
                     // Clear the bits first
                     TA3CCTL4 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA3CCTL4 |= CCIS_0;
                             break;
@@ -1447,7 +1447,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_5:
                     // Clear the bits first
                     TA3CCTL5 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA3CCTL5 |= CCIS_0;
                             break;
@@ -1466,7 +1466,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                 case CHANNEL_6:
                     // Clear the bits first
                     TA3CCTL6 &= ~(CCIS1 | CCIS0);
-                    switch(captureEdge){
+                    switch(captureSource){
                         case INPUT_A:
                             TA3CCTL6 |= CCIS_0;
                             break;
@@ -1487,9 +1487,387 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
     }
 }
 
+void select_input_source_sychronisity_timer_Ax(uint8_t timerNum, uint8_t synchronize, uint8_t captureChannel){
+    switch(timerNum){
+        case TIM_A_0:
+            switch(captureChannel){
+                // CCTL0
+                case CHANNEL_0:
+                    if(synchronize){
+                        TA0CCTL0 |= SCS;
+                    }
+                    else{
+                        TA0CCTL0 &= ~SCS;
+                    }
+                    break;
+                //CCTL1
+                case CHANNEL_1:
+                    if(synchronize){
+                        TA0CCTL1 |= SCS;
+                    }
+                    else{
+                        TA0CCTL1 &= ~SCS;
+                    }
+                    break;
+                //CCTL2
+                case CHANNEL_2:
+                    if(synchronize){
+                        TA0CCTL2 |= SCS;
+                    }
+                    else{
+                        TA0CCTL2 &= ~SCS;
+                    }
+                    break;
+                //CCTL3
+                case CHANNEL_3:
+                    if(synchronize){
+                        TA0CCTL3 |= SCS;
+                    }
+                    else{
+                        TA0CCTL3 &= ~SCS;
+                    }
+                    break;
+                //CCTL4
+                case CHANNEL_4:
+                    if(synchronize){
+                        TA0CCTL4 |= SCS;
+                    }
+                    else{
+                        TA0CCTL4 &= ~SCS;
+                    }
+                    break;
+                //CCTL5
+                case CHANNEL_5:
+                    if(synchronize){
+                        TA0CCTL5 |= SCS;
+                    }
+                    else{
+                        TA0CCTL5 &= ~SCS;
+                    }
+                    break;
+                //CCTL6
+                case CHANNEL_6:
+                    if(synchronize){
+                        TA0CCTL6 |= SCS;
+                    }
+                    else{
+                        TA0CCTL6 &= ~SCS;
+                    }
+                    break;
+            }
+            
+            break;
+        case TIM_A_1:
+            switch(captureChannel){
+                // CCTL0
+                case CHANNEL_0:
+                    if(synchronize){
+                        TA1CCTL0 |= SCS;
+                    }
+                    else{
+                        TA1CCTL0 &= ~SCS;
+                    }
+                    break;
+                //CCTL1
+                case CHANNEL_1:
+                    if(synchronize){
+                        TA1CCTL1 |= SCS;
+                    }
+                    else{
+                        TA1CCTL1 &= ~SCS;
+                    }
+                    break;
+                //CCTL2
+                case CHANNEL_2:
+                    if(synchronize){
+                        TA1CCTL2 |= SCS;
+                    }
+                    else{
+                        TA1CCTL2 &= ~SCS;
+                    }
+                    break;
+                //CCTL3
+                case CHANNEL_3:
+                    if(synchronize){
+                        TA1CCTL3 |= SCS;
+                    }
+                    else{
+                        TA1CCTL3 &= ~SCS;
+                    }
+                    break;
+                //CCTL4
+                case CHANNEL_4:
+                    if(synchronize){
+                        TA1CCTL4 |= SCS;
+                    }
+                    else{
+                        TA1CCTL4 &= ~SCS;
+                    }
+                    break;
+                //CCTL5
+                case CHANNEL_5:
+                    if(synchronize){
+                        TA1CCTL5 |= SCS;
+                    }
+                    else{
+                        TA1CCTL5 &= ~SCS;
+                    }
+                    break;
+                //CCTL6
+                case CHANNEL_6:
+                    if(synchronize){
+                        TA1CCTL6 |= SCS;
+                    }
+                    else{
+                        TA1CCTL6 &= ~SCS;
+                    }
+                    break;
+            }
+            
+            break;
+        case TIM_A_2:
+            switch(captureChannel){
+                // CCTL0
+                case CHANNEL_0:
+                    if(synchronize){
+                        TA2CCTL0 |= SCS;
+                    }
+                    else{
+                        TA2CCTL0 &= ~SCS;
+                    }
+                    break;
+                //CCTL1
+                case CHANNEL_1:
+                    if(synchronize){
+                        TA2CCTL1 |= SCS;
+                    }
+                    else{
+                        TA2CCTL1 &= ~SCS;
+                    }
+                    break;
+                //CCTL2
+                case CHANNEL_2:
+                    if(synchronize){
+                        TA2CCTL2 |= SCS;
+                    }
+                    else{
+                        TA2CCTL2 &= ~SCS;
+                    }
+                    break;
+                //CCTL3
+                case CHANNEL_3:
+                    if(synchronize){
+                        TA2CCTL3 |= SCS;
+                    }
+                    else{
+                        TA2CCTL3 &= ~SCS;
+                    }
+                    break;
+                //CCTL4
+                case CHANNEL_4:
+                    if(synchronize){
+                        TA2CCTL4 |= SCS;
+                    }
+                    else{
+                        TA2CCTL4 &= ~SCS;
+                    }
+                    break;
+                //CCTL5
+                case CHANNEL_5:
+                    if(synchronize){
+                        TA2CCTL5 |= SCS;
+                    }
+                    else{
+                        TA2CCTL5 &= ~SCS;
+                    }
+                    break;
+                //CCTL6
+                case CHANNEL_6:
+                    if(synchronize){
+                        TA2CCTL6 |= SCS;
+                    }
+                    else{
+                        TA2CCTL6 &= ~SCS;
+                    }
+                    break;
+            }
+            
+            break;
+        case TIM_A_3:
+            switch(captureChannel){
+                // CCTL0
+                case CHANNEL_0:
+                    if(synchronize){
+                        TA3CCTL0 |= SCS;
+                    }
+                    else{
+                        TA3CCTL0 &= ~SCS;
+                    }
+                    break;
+                //CCTL1
+                case CHANNEL_1:
+                    if(synchronize){
+                        TA3CCTL1 |= SCS;
+                    }
+                    else{
+                        TA3CCTL1 &= ~SCS;
+                    }
+                    break;
+                //CCTL2
+                case CHANNEL_2:
+                    if(synchronize){
+                        TA3CCTL2 |= SCS;
+                    }
+                    else{
+                        TA3CCTL2 &= ~SCS;
+                    }
+                    break;
+                //CCTL3
+                case CHANNEL_3:
+                    if(synchronize){
+                        TA3CCTL3 |= SCS;
+                    }
+                    else{
+                        TA3CCTL3 &= ~SCS;
+                    }
+                    break;
+                //CCTL4
+                case CHANNEL_4:
+                    if(synchronize){
+                        TA3CCTL4 |= SCS;
+                    }
+                    else{
+                        TA3CCTL4 &= ~SCS;
+                    }
+                    break;
+                //CCTL5
+                case CHANNEL_5:
+                    if(synchronize){
+                        TA3CCTL5 |= SCS;
+                    }
+                    else{
+                        TA3CCTL5 &= ~SCS;
+                    }
+                    break;
+                //CCTL6
+                case CHANNEL_6:
+                    if(synchronize){
+                        TA3CCTL6 |= SCS;
+                    }
+                    else{
+                        TA3CCTL6 &= ~SCS;
+                    }
+                    break;
+            }
+            
+            break;
+    }
+}
 
-
-
+void read_synchronized_bit_timer_Ax(uint8_t timerNum, uint8_t captureChannel){
+    switch(timerNum){
+        case TIM_A_0:
+            switch(captureChannel){
+                // CCTL0
+                case CHANNEL_0:
+                    return (TA0CCTL0 & SCCI);
+                //CCTL1
+                case CHANNEL_1:
+                    return (TA0CCTL1 & SCCI);
+                //CCTL2
+                case CHANNEL_2:
+                    return (TA0CCTL2 & SCCI);
+                //CCTL3
+                case CHANNEL_3:
+                    return (TA0CCTL3 & SCCI);
+                //CCTL4
+                case CHANNEL_4:
+                    return (TA0CCTL4 & SCCI);
+                //CCTL5
+                case CHANNEL_5:
+                    return (TA0CCTL5 & SCCI);
+                //CCTL6
+                case CHANNEL_6:
+                    return (TA0CCTL6 & SCCI);
+            }
+            break;
+        case TIM_A_1:
+            switch(captureChannel){
+                // CCTL0
+                case CHANNEL_0:
+                    return (TA1CCTL0 & SCCI);
+                //CCTL1
+                case CHANNEL_1:
+                    return (TA1CCTL1 & SCCI);
+                //CCTL2
+                case CHANNEL_2:
+                    return (TA1CCTL2 & SCCI);
+                //CCTL3
+                case CHANNEL_3:
+                    return (TA1CCTL3 & SCCI);
+                //CCTL4
+                case CHANNEL_4:
+                    return (TA1CCTL4 & SCCI);
+                //CCTL5
+                case CHANNEL_5:
+                    return (TA1CCTL5 & SCCI);
+                //CCTL6
+                case CHANNEL_6:
+                    return (TA1CCTL6 & SCCI);
+            }
+            break;
+        case TIM_A_2:
+            switch(captureChannel){
+                // CCTL0
+                case CHANNEL_0:
+                    return (TA2CCTL0 & SCCI);
+                //CCTL1
+                case CHANNEL_1:
+                    return (TA2CCTL1 & SCCI);
+                //CCTL2
+                case CHANNEL_2:
+                    return (TA2CCTL2 & SCCI);
+                //CCTL3
+                case CHANNEL_3:
+                    return (TA2CCTL3 & SCCI);
+                //CCTL4
+                case CHANNEL_4:
+                    return (TA2CCTL4 & SCCI);
+                //CCTL5
+                case CHANNEL_5:
+                    return (TA2CCTL5 & SCCI);
+                //CCTL6
+                case CHANNEL_6:
+                    return (TA2CCTL6 & SCCI);
+            }
+            break;
+        case TIM_A_3:
+            switch(captureChannel){
+                // CCTL0
+                case CHANNEL_0:
+                    return (TA3CCTL0 & SCCI);
+                //CCTL1
+                case CHANNEL_1:
+                    return (TA3CCTL1 & SCCI);
+                //CCTL2
+                case CHANNEL_2:
+                    return (TA3CCTL2 & SCCI);
+                //CCTL3
+                case CHANNEL_3:
+                    return (TA3CCTL3 & SCCI);
+                //CCTL4
+                case CHANNEL_4:
+                    return (TA3CCTL4 & SCCI);
+                //CCTL5
+                case CHANNEL_5:
+                    return (TA3CCTL5 & SCCI);
+                //CCTL6
+                case CHANNEL_6:
+                    return (TA3CCTL6 & SCCI);
+            }
+            break;
+    }
+}
 
 
 
