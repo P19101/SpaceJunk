@@ -64,7 +64,7 @@ typedef enum { // lower bounds are exclusive, upper bounds are inclusive
 	LF_DRIVE_LV_2,	
 	LF_DRIVE_LV_3,	
 	LF_DRIVE_LV_4	
-}
+}clockSourceLowFreqDriveStrength;
 
 /**
  * Unlocks the CS registers so that the clock source settings can be modified upon

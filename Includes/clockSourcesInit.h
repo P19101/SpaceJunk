@@ -4,8 +4,8 @@
  * @brief File containing function definitions for default clock settings
  */
  
-#ifndef CLOCK_SOURCES_H
-#define CLOCK_SOURCES_H
+#ifndef CLOCK_SOURCES_INIT_H
+#define CLOCK_SOURCES_INIT_H
 
 #include "pinUsage.h"
 #include "commonHeader.h"
@@ -45,3 +45,6 @@ void diabled_clock_signals(void);
  * @return: None
  */
 void diabled_conditional_request(void);
+
+
+#endif

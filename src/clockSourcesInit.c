@@ -5,10 +5,13 @@
  */
  
 #include "clockSourcesInit.h"
+#include "pinUsage.h"
+#include "commonHeader.h"
+#include "clockSources.h"
 
 void default_clock_sources(void){
-	select_MCLK_source(MASTER_CLK_SOURCE)
-	select_SMCLK_source(SUB_SYS_CLK_SOURCE)
+	select_MCLK_source(MASTER_CLK_SOURCE);
+	select_SMCLK_source(SUB_SYS_CLK_SOURCE);
 	select_ACLK_source(AUX_CLOCK_SOURCE);
 }
 

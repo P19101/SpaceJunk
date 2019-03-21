@@ -10,7 +10,7 @@
 
 
 
-#endif
+
 
 #include "commonHeader.h"
 
@@ -68,13 +68,9 @@ typedef enum {
 }timerAOutputModeSelect;
 
 typedef enum {
-    CHANNEL_0
+    CHANNEL_0,
     CHANNEL_1,
-    CHANNEL_2,
-    CHANNEL_3,
-    CHANNEL_4,
-    CHANNEL_5,
-    CHANNEL_6
+    CHANNEL_2
 }timerACaptureCompareChannels;
 
 typedef enum {
@@ -183,5 +179,6 @@ void select_input_source_sychronisity_timer_Ax(uint8_t timerNum, uint8_t synchro
  * @param - uint8_t timerNum: the specific type A timer reference
  * @return - uint8_t synchBit: the polarity of the synchronized bit. 
  */
-void read_synchronized_bit_timer_Ax(uint8_t timerNum, uint8_t captureChannel);
+uint8_t read_synchronized_bit_timer_Ax(uint8_t timerNum, uint8_t captureChannel);
 
+#endif

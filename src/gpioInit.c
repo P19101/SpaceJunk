@@ -6,7 +6,7 @@
  * 		pinUsage.h
  */
  
-#include "gpio_init.h"
+#include "gpioInit.h"
 
 void set_port_output_pins(void){
     int port_1_outs[] = PORT_1_OUTPUTS;

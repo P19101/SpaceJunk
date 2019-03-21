@@ -36,6 +36,7 @@ void configure_ADC(void){
     set_ADC_secondary_divider(ADC_SECONDARY_DIVIDER);
     set_ADC_sample_trigger_source(ADC_TRIGGER);
     set_ADC_resolution(ADC_RESOLUTION);
+    select_ADC_mem_register(0x00);
 }
 
 void configure_clock_sources(void){

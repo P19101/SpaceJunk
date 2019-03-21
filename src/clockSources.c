@@ -219,7 +219,7 @@ void subsystem_clock_division_factor(uint8_t div){
 	CSCTL2 |= divSet;
 }
 
-void high_freq_crystal_drive_strength(uint8_t drive){
+void high_freq_clk_drive_strength(uint8_t drive){
 	CSCTL4 &= ~(HFXTDRIVE1 | HFXTDRIVE0);
 	switch(drive){
 		case HF_DRIVE_LV_1:
@@ -247,7 +247,7 @@ void high_freq_clk_bypass_diable(void){
 
 void high_freq_clk_range(uint8_t freq){
 	CSCTL4 &= ~(HFFREQ1 | HFFREQ0);
-	swtich(freq){
+	switch(freq){
 		case HF_0_TO_4_MHZ:
 			CSCTL4 |= HFFREQ_0;
 			break;

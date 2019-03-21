@@ -4,7 +4,7 @@
  * @brief source file containing hardware specific functions for the type A timer
  * 		modules.
  */
-#include "timer_A.h"
+#include "timerA.h"
 
 void select_clock_source_timer_Ax(uint8_t timerNum, uint8_t clockSource){
 	switch(timerNum){
@@ -337,19 +337,19 @@ uint8_t read_interrupt_flag_timer_Ax(uint8_t timerNum){
 	switch(timerNum){
 		case TIM_A_0:
 			return (TA0CTL & TAIFG);
-			break;
+
 		case TIM_A_1:
 			return (TA1CTL & TAIFG);
-			break;
+
 		case TIM_A_2:
 			return (TA2CTL & TAIFG);
-			break;
+
 		case TIM_A_3:
 			return (TA3CTL & TAIFG);
-			break;
+
 		default:// may want to return some sort of timer error code. 
 			return DEFAULT_SELECTION;
-			break;
+
 	}
 }
 
@@ -357,19 +357,19 @@ uint16_t read_timer_count_value_timer_Ax(uint8_t timerNum){
 	switch(timerNum){
 		case TIM_A_0:
 			return (TA0R);
-			break;
+
 		case TIM_A_1:
 			return (TA1R);
-			break;
+
 		case TIM_A_2:
 			return (TA2R);
-			break;
+
 		case TIM_A_3:
 			return (TA3R);
-			break;
+
 		default:// may want to return some sort of timer error code. 
 			return DEFAULT_SELECTION;
-			break;
+
 	}
 }
 
@@ -434,84 +434,7 @@ void set_capture_mode_timer_Ax(uint8_t timerNum, uint8_t captureEdge, uint8_t ca
                             break;
                     }
                     break;
-                //CCTL3
-                case CHANNEL_3:
-                    // Clear the bits first
-                    TA0CCTL3 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA0CCTL3 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA0CCTL3 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA0CCTL3 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA0CCTL3 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    // Clear the bits first
-                    TA0CCTL4 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA0CCTL4 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA0CCTL4 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA0CCTL4 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA0CCTL4 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    // Clear the bits first
-                    TA0CCTL5 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA0CCTL5 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA0CCTL5 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA0CCTL5 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA0CCTL5 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    // Clear the bits first
-                    TA0CCTL6 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA0CCTL6 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA0CCTL6 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA0CCTL6 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA0CCTL6 |= CM_3;
-                            break;
-                    }
-                    break;
             }
-            
             break;
         case TIM_A_1:
             switch(captureChannel){
@@ -573,81 +496,6 @@ void set_capture_mode_timer_Ax(uint8_t timerNum, uint8_t captureEdge, uint8_t ca
                     }
                     break;
                 //CCTL3
-                case CHANNEL_3:
-                    // Clear the bits first
-                    TA1CCTL3 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA1CCTL3 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA1CCTL3 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA1CCTL3 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA1CCTL3 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    // Clear the bits first
-                    TA1CCTL4 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA1CCTL4 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA1CCTL4 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA1CCTL4 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA1CCTL4 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    // Clear the bits first
-                    TA1CCTL5 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA1CCTL5 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA1CCTL5 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA1CCTL5 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA1CCTL5 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    // Clear the bits first
-                    TA1CCTL6 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA1CCTL6 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA1CCTL6 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA1CCTL6 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA1CCTL6 |= CM_3;
-                            break;
-                    }
-                    break;
             }
             
             break;
@@ -691,103 +539,8 @@ void set_capture_mode_timer_Ax(uint8_t timerNum, uint8_t captureEdge, uint8_t ca
                             break;
                     }
                     break;
-                //CCTL2
-                case CHANNEL_2:
-                    // Clear the bits first
-                    TA2CCTL2 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA2CCTL2 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA2CCTL2 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA2CCTL2 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA2CCTL2 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL3
-                case CHANNEL_3:
-                    // Clear the bits first
-                    TA2CCTL3 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA2CCTL3 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA2CCTL3 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA2CCTL3 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA2CCTL3 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    // Clear the bits first
-                    TA2CCTL4 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA2CCTL4 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA2CCTL4 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA2CCTL4 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA2CCTL4 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    // Clear the bits first
-                    TA2CCTL5 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA2CCTL5 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA2CCTL5 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA2CCTL5 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA2CCTL5 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    // Clear the bits first
-                    TA2CCTL6 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA2CCTL6 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA2CCTL6 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA2CCTL6 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA2CCTL6 |= CM_3;
-                            break;
-                    }
-                    break;
+
             }
-            
             break;
         case TIM_A_3:
             switch(captureChannel){
@@ -829,102 +582,7 @@ void set_capture_mode_timer_Ax(uint8_t timerNum, uint8_t captureEdge, uint8_t ca
                             break;
                     }
                     break;
-                //CCTL2
-                case CHANNEL_2:
-                    // Clear the bits first
-                    TA3CCTL2 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA3CCTL2 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA3CCTL2 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA3CCTL2 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA3CCTL2 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL3
-                case CHANNEL_3:
-                    // Clear the bits first
-                    TA3CCTL3 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA3CCTL3 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA3CCTL3 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA3CCTL3 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA3CCTL3 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    // Clear the bits first
-                    TA3CCTL4 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA3CCTL4 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA3CCTL4 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA3CCTL4 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA3CCTL4 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    // Clear the bits first
-                    TA3CCTL5 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA3CCTL5 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA3CCTL5 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA3CCTL5 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA3CCTL5 |= CM_3;
-                            break;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    // Clear the bits first
-                    TA3CCTL6 &= ~(CM1 | CM0);
-                    switch(captureEdge){
-                        case NO_CAPTURE:
-                            TA3CCTL6 |= CM_0;
-                            break;
-                        case RISING_EDGE:
-                            TA3CCTL6 |= CM_1;
-                            break;
-                        case FALLING_EDGE:
-                            TA3CCTL6 |= CM_2;
-                            break;
-                        case DOUBLE_EDGE:
-                            TA3CCTL6 |= CM_3;
-                            break;
-                    }
-                    break;
-            }
+                 }
             
             break;
     }
@@ -991,82 +649,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                             break;
                     }
                     break;
-                //CCTL3
-                case CHANNEL_3:
-                    // Clear the bits first
-                    TA0CCTL3 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA0CCTL3 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA0CCTL3 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA0CCTL3 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA0CCTL3 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    // Clear the bits first
-                    TA0CCTL4 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA0CCTL4 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA0CCTL4 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA0CCTL4 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA0CCTL4 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    // Clear the bits first
-                    TA0CCTL5 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA0CCTL5 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA0CCTL5 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA0CCTL5 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA0CCTL5 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    // Clear the bits first
-                    TA0CCTL6 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA0CCTL6 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA0CCTL6 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA0CCTL6 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA0CCTL6 |= CCIS_3;
-                            break;
-                    }
-                    break;
+
             }
             
             break;
@@ -1129,82 +712,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                             break;
                     }
                     break;
-                //CCTL3
-                case CHANNEL_3:
-                    // Clear the bits first
-                    TA1CCTL3 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA1CCTL3 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA1CCTL3 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA1CCTL3 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA1CCTL3 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    // Clear the bits first
-                    TA1CCTL4 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA1CCTL4 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA1CCTL4 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA1CCTL4 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA1CCTL4 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    // Clear the bits first
-                    TA1CCTL5 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA1CCTL5 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA1CCTL5 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA1CCTL5 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA1CCTL5 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    // Clear the bits first
-                    TA1CCTL6 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA1CCTL6 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA1CCTL6 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA1CCTL6 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA1CCTL6 |= CCIS_3;
-                            break;
-                    }
-                    break;
+
             }
             
             break;
@@ -1248,102 +756,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                             break;
                     }
                     break;
-                //CCTL2
-                case CHANNEL_2:
-                    // Clear the bits first
-                    TA2CCTL2 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA2CCTL2 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA2CCTL2 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA2CCTL2 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA2CCTL2 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL3
-                case CHANNEL_3:
-                    // Clear the bits first
-                    TA2CCTL3 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA2CCTL3 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA2CCTL3 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA2CCTL3 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA2CCTL3 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    // Clear the bits first
-                    TA2CCTL4 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA2CCTL4 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA2CCTL4 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA2CCTL4 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA2CCTL4 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    // Clear the bits first
-                    TA2CCTL5 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA2CCTL5 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA2CCTL5 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA2CCTL5 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA2CCTL5 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    // Clear the bits first
-                    TA2CCTL6 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA2CCTL6 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA2CCTL6 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA2CCTL6 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA2CCTL6 |= CCIS_3;
-                            break;
-                    }
-                    break;
-            }
+                }
             
             break;
         case TIM_A_3:
@@ -1386,102 +799,7 @@ void set_capture_compare_input_source_timer_Ax(uint8_t timerNum, uint8_t capture
                             break;
                     }
                     break;
-                //CCTL2
-                case CHANNEL_2:
-                    // Clear the bits first
-                    TA3CCTL2 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA3CCTL2 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA3CCTL2 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA3CCTL2 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA3CCTL2 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL3
-                case CHANNEL_3:
-                    // Clear the bits first
-                    TA3CCTL3 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA3CCTL3 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA3CCTL3 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA3CCTL3 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA3CCTL3 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    // Clear the bits first
-                    TA3CCTL4 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA3CCTL4 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA3CCTL4 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA3CCTL4 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA3CCTL4 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    // Clear the bits first
-                    TA3CCTL5 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA3CCTL5 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA3CCTL5 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA3CCTL5 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA3CCTL5 |= CCIS_3;
-                            break;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    // Clear the bits first
-                    TA3CCTL6 &= ~(CCIS1 | CCIS0);
-                    switch(captureSource){
-                        case INPUT_A:
-                            TA3CCTL6 |= CCIS_0;
-                            break;
-                        case INPUT_B:
-                            TA3CCTL6 |= CCIS_1;
-                            break;
-                        case INPUT_GND:
-                            TA3CCTL6 |= CCIS_2;
-                            break;
-                        case INPUT_VCC:
-                            TA3CCTL6 |= CCIS_3;
-                            break;
-                    }
-                    break;
-            }
+                }
             
             break;
     }
@@ -1518,42 +836,7 @@ void select_input_source_sychronisity_timer_Ax(uint8_t timerNum, uint8_t synchro
                         TA0CCTL2 &= ~SCS;
                     }
                     break;
-                //CCTL3
-                case CHANNEL_3:
-                    if(synchronize){
-                        TA0CCTL3 |= SCS;
-                    }
-                    else{
-                        TA0CCTL3 &= ~SCS;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    if(synchronize){
-                        TA0CCTL4 |= SCS;
-                    }
-                    else{
-                        TA0CCTL4 &= ~SCS;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    if(synchronize){
-                        TA0CCTL5 |= SCS;
-                    }
-                    else{
-                        TA0CCTL5 &= ~SCS;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    if(synchronize){
-                        TA0CCTL6 |= SCS;
-                    }
-                    else{
-                        TA0CCTL6 &= ~SCS;
-                    }
-                    break;
+
             }
             
             break;
@@ -1586,42 +869,7 @@ void select_input_source_sychronisity_timer_Ax(uint8_t timerNum, uint8_t synchro
                         TA1CCTL2 &= ~SCS;
                     }
                     break;
-                //CCTL3
-                case CHANNEL_3:
-                    if(synchronize){
-                        TA1CCTL3 |= SCS;
-                    }
-                    else{
-                        TA1CCTL3 &= ~SCS;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    if(synchronize){
-                        TA1CCTL4 |= SCS;
-                    }
-                    else{
-                        TA1CCTL4 &= ~SCS;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    if(synchronize){
-                        TA1CCTL5 |= SCS;
-                    }
-                    else{
-                        TA1CCTL5 &= ~SCS;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    if(synchronize){
-                        TA1CCTL6 |= SCS;
-                    }
-                    else{
-                        TA1CCTL6 &= ~SCS;
-                    }
-                    break;
+
             }
             
             break;
@@ -1645,51 +893,7 @@ void select_input_source_sychronisity_timer_Ax(uint8_t timerNum, uint8_t synchro
                         TA2CCTL1 &= ~SCS;
                     }
                     break;
-                //CCTL2
-                case CHANNEL_2:
-                    if(synchronize){
-                        TA2CCTL2 |= SCS;
-                    }
-                    else{
-                        TA2CCTL2 &= ~SCS;
-                    }
-                    break;
-                //CCTL3
-                case CHANNEL_3:
-                    if(synchronize){
-                        TA2CCTL3 |= SCS;
-                    }
-                    else{
-                        TA2CCTL3 &= ~SCS;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    if(synchronize){
-                        TA2CCTL4 |= SCS;
-                    }
-                    else{
-                        TA2CCTL4 &= ~SCS;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    if(synchronize){
-                        TA2CCTL5 |= SCS;
-                    }
-                    else{
-                        TA2CCTL5 &= ~SCS;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    if(synchronize){
-                        TA2CCTL6 |= SCS;
-                    }
-                    else{
-                        TA2CCTL6 &= ~SCS;
-                    }
-                    break;
+
             }
             
             break;
@@ -1713,58 +917,14 @@ void select_input_source_sychronisity_timer_Ax(uint8_t timerNum, uint8_t synchro
                         TA3CCTL1 &= ~SCS;
                     }
                     break;
-                //CCTL2
-                case CHANNEL_2:
-                    if(synchronize){
-                        TA3CCTL2 |= SCS;
-                    }
-                    else{
-                        TA3CCTL2 &= ~SCS;
-                    }
-                    break;
-                //CCTL3
-                case CHANNEL_3:
-                    if(synchronize){
-                        TA3CCTL3 |= SCS;
-                    }
-                    else{
-                        TA3CCTL3 &= ~SCS;
-                    }
-                    break;
-                //CCTL4
-                case CHANNEL_4:
-                    if(synchronize){
-                        TA3CCTL4 |= SCS;
-                    }
-                    else{
-                        TA3CCTL4 &= ~SCS;
-                    }
-                    break;
-                //CCTL5
-                case CHANNEL_5:
-                    if(synchronize){
-                        TA3CCTL5 |= SCS;
-                    }
-                    else{
-                        TA3CCTL5 &= ~SCS;
-                    }
-                    break;
-                //CCTL6
-                case CHANNEL_6:
-                    if(synchronize){
-                        TA3CCTL6 |= SCS;
-                    }
-                    else{
-                        TA3CCTL6 &= ~SCS;
-                    }
-                    break;
+
             }
             
             break;
     }
 }
 
-void read_synchronized_bit_timer_Ax(uint8_t timerNum, uint8_t captureChannel){
+uint8_t read_synchronized_bit_timer_Ax(uint8_t timerNum, uint8_t captureChannel){
     switch(timerNum){
         case TIM_A_0:
             switch(captureChannel){
@@ -1777,18 +937,7 @@ void read_synchronized_bit_timer_Ax(uint8_t timerNum, uint8_t captureChannel){
                 //CCTL2
                 case CHANNEL_2:
                     return (TA0CCTL2 & SCCI);
-                //CCTL3
-                case CHANNEL_3:
-                    return (TA0CCTL3 & SCCI);
-                //CCTL4
-                case CHANNEL_4:
-                    return (TA0CCTL4 & SCCI);
-                //CCTL5
-                case CHANNEL_5:
-                    return (TA0CCTL5 & SCCI);
-                //CCTL6
-                case CHANNEL_6:
-                    return (TA0CCTL6 & SCCI);
+
             }
             break;
         case TIM_A_1:
@@ -1802,18 +951,7 @@ void read_synchronized_bit_timer_Ax(uint8_t timerNum, uint8_t captureChannel){
                 //CCTL2
                 case CHANNEL_2:
                     return (TA1CCTL2 & SCCI);
-                //CCTL3
-                case CHANNEL_3:
-                    return (TA1CCTL3 & SCCI);
-                //CCTL4
-                case CHANNEL_4:
-                    return (TA1CCTL4 & SCCI);
-                //CCTL5
-                case CHANNEL_5:
-                    return (TA1CCTL5 & SCCI);
-                //CCTL6
-                case CHANNEL_6:
-                    return (TA1CCTL6 & SCCI);
+
             }
             break;
         case TIM_A_2:
@@ -1824,21 +962,7 @@ void read_synchronized_bit_timer_Ax(uint8_t timerNum, uint8_t captureChannel){
                 //CCTL1
                 case CHANNEL_1:
                     return (TA2CCTL1 & SCCI);
-                //CCTL2
-                case CHANNEL_2:
-                    return (TA2CCTL2 & SCCI);
-                //CCTL3
-                case CHANNEL_3:
-                    return (TA2CCTL3 & SCCI);
-                //CCTL4
-                case CHANNEL_4:
-                    return (TA2CCTL4 & SCCI);
-                //CCTL5
-                case CHANNEL_5:
-                    return (TA2CCTL5 & SCCI);
-                //CCTL6
-                case CHANNEL_6:
-                    return (TA2CCTL6 & SCCI);
+
             }
             break;
         case TIM_A_3:
@@ -1849,24 +973,13 @@ void read_synchronized_bit_timer_Ax(uint8_t timerNum, uint8_t captureChannel){
                 //CCTL1
                 case CHANNEL_1:
                     return (TA3CCTL1 & SCCI);
-                //CCTL2
-                case CHANNEL_2:
-                    return (TA3CCTL2 & SCCI);
-                //CCTL3
-                case CHANNEL_3:
-                    return (TA3CCTL3 & SCCI);
-                //CCTL4
-                case CHANNEL_4:
-                    return (TA3CCTL4 & SCCI);
-                //CCTL5
-                case CHANNEL_5:
-                    return (TA3CCTL5 & SCCI);
-                //CCTL6
-                case CHANNEL_6:
-                    return (TA3CCTL6 & SCCI);
+
             }
             break;
+        default:
+             return DEFAULT_SELECTION;
     }
+    return DEFAULT_SELECTION;
 }
 
 

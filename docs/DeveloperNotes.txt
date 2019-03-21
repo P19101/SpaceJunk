@@ -61,5 +61,17 @@ GPIO:
 	
 	Any unused pins should be configured to their GPIO function and set as outputs.
 	The output drive is stated as dont care by the manual, but surely setting it
-	would require more energy than having it be cleared so thats whay i'ma do.   
+	would require more energy than having it be cleared so thats whay i'ma do.  
+
+UART:
+    pg 765 of the family manual explains the various operational modes for the UART module. 
+    The UART is part of the EUSCI or enhanced universal serial communication interface. There is only one UART module on board, which is recommneded for comms
+    and any other devices which want to use UART should likely be multiplexed in physically and controlled in software.
+    
+    The manual also documents the reset pattern for the UART
+    1 - UCSWRST is set to 1 while the control registers are configured (bit 0 found in )
+    2 - configure all other control registers whie the UCSWRST bit is set.
+    3 - configure the PORTS which are going to be used. 
+    4 - clear UCSWRST bit
+    5 - enable any UART interrupts. 
 	

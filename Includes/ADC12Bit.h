@@ -359,6 +359,22 @@ void set_or_clear_internal_source_2(uint8_t source);
  * @return: None
  */
 void set_or_clear_internal_source_3(uint8_t source);
+
+/**
+ *  Read the selected conversion memory register
+ *  @param - uint8_t regNum: the number 0-31 of the register which should be read.
+ *  @return - uint16_t conversionResult: the result of the last conversion stored in the selected memory register
+ *          in normal operation from reset, the result is right justified meaning the top (16-ADCRES) bits are all 0.
+ */
+//TODO: write a thing that reads the conversion memory,
+
+/**
+ * Choose the settings for the selected ADC memory register. Each of the 32 ADCMEM registers has one corrisponding
+ * ADCMCTL register used to determine its input source,
+ */
+//TODO: write stuff to select all the ADCMCTL settings, there is many more than i thought originally.
+
+
 #endif /* ADC12BIT_H_ */
 
 
