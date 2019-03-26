@@ -74,4 +74,18 @@ UART:
     3 - configure the PORTS which are going to be used. 
     4 - clear UCSWRST bit
     5 - enable any UART interrupts. 
+    
+    When configuring the control register UCA0CTLW0 as referenced in the manual,
+    in code is controlled by the registers UCA0CTL0 (bits 15-8) and UCA0CTL1 (bits 7-0)
+    
+    EUSCI module which the UART is a part of shares almost all of its registers with the SPI device on the same
+    module, and the only difference is the setting of the UCSYNC bit in which clearing the UCSYNC will but the 
+    module in asynchonous mode which is the UART setting. setting this bit will put the module in sychonous mode
+    which makes the module act as an SPI device. 
+    
+    BAUD RATE CALCULATOR -
+        N = clkfreq/baudRate (N = 32768Hz/9600 I'm assuming use the low frequency chip at 9600 baud. This should be fast
+                              enough considering the very low amount of data that is actually being sent at any point in time.)
+        Baud is controlled by 2 registers over 4 bit fields. All the info on selecting a baud starts on page
+        776 of the family manual. 
 	
