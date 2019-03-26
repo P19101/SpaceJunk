@@ -183,5 +183,102 @@ void choose_mod_factor_two_USCIA_UART(uint8_t factor){
     UCA0MCTLW |= (factorSet & HIGH_BYTE);// clear the lower byte while setting to not disrupt other settings.
 }
 
+uint8_t read_busy_flag_USCIA_UART(void){
+    return (UCA0STATW & UCBUSY);
+}
 
+uint8_t read_address_flag_USCIA_UART(void){
+    return (UCA0STATW & UCADDR);
+}
+
+uint8_t read_idle_line_flag_USCIA_UART(void){
+    return (UCA0STATW & UCIDLE);
+}
+
+uint8_t read_error_flag_USCIA_UART(void){
+    return (UCA0STATW & UCRXERR);
+}
+
+uint8_t read_break_condition_USCIA_UART(void){
+    return (UCA0STATW & UCBRK);
+}
+
+uint8_t read_parity_err_flag_USCIA_UART(void){
+    return (UCA0STATW & UCPE);
+}
+
+uint8_t read_overrun_flag_USCIA_UART(void){
+    return (UCA0STATW & UCOE);
+}
+
+uint8_t read_framming_flag_USCIA_UART(void){
+    return (UCA0STATW & UCFE);
+}
+
+void loopback_mode_USCIA_UART(uint8_t loopback){
+    if(loopback){
+        UCA0STATW |= UCLISTEN;
+    } 
+    else{
+        UCA0STATW &= ~(UCLISTEN);
+    }
+}
+
+uint8_t read_RX_buffer(void){
+    return UCA0RXBUF;
+}
+
+
+void choose_auto_baud_USCIA_UART(uint8_t autoBaud){
+    if(autoBaud){
+        UCA0ACBTL |= UCABDEN;
+    }
+    else{
+        UCA0ACBTL &= ~(UCABDEN);
+    }
+}
+
+uint8_t read_break_err_flag_USCIA_UART(void){
+    return (UCA0ACBTL & UCBTOE);
+}
+
+uint8_t read_sync_err_flag_USCIA_UART(void){
+    return (UCA0ACBTL & UCSTOE);
+}
+
+void set_auto_baud_timeout_USCIA_UART(uint8_t timeout){
+    UCA0ACBTL &= ~(UCDELIM0 | UCDELIM1); 
+    switch(timeout){
+        case ONE_BIT_TIME:
+            UCA0ACBTL |= DEFAULT_SELECTION;
+            break;
+        case TWO_BIT_TIME:
+            UCA0ACBTL |= UCDELIM0;
+            break;
+        case THREE_BIT_TIME:
+            UCA0ACBTL |= UCDELIM1;
+            break;
+        case FOUR_BIT_TIME:
+            UCA0ACBTL |= (UCDELIM0 | UCDELIM1);
+            break;
+    }
+}
+
+void choose_IrDA_enabled_USCIA_UART(uint8_t enable){
+    if(enable){
+        UCA0IRCTL |= BIT_0;
+    }
+    else{
+        UCA0IRCTL &= ~(BIT_0);
+    }
+}
+
+void choose_IrDA_clk_source_USCIA_UART(uint8_t clockSrc){
+    if(clockSrc){
+        UCA0IRCTL |= BIT_1;
+    }
+    else{
+        UCA0IRCTL &= ~(BIT_1);
+    }
+}
 /*******************************************************************************/

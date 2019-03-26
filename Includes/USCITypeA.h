@@ -39,6 +39,13 @@ typedef enum{
     ADDRESS_BIT_MULT_PROC,
     UART_WITH_AUTO_BAUD_DET
 }asychronousModeUSCIAUARTMode;
+
+typedef enum{
+    ONE_BIT_TIME,
+    TWO_BIT_TIME,
+    THREE_BIT_TIME,
+    FOUR_BIT_TIME
+}autoBaudTimeoutUSCIAUARTMode;
 //*************************
 // UCA0CTLW0 register
 //*************************
@@ -238,13 +245,157 @@ void choose_oversampling_mode_USCIA_UART(uint8_t oversample);
 
 /**
  * Choose the first modulation level factor
- * @param - uint8_t firstMode: the firt modulation factor for baud rate
+ * @param - uint8_t factor: the first modulation factor for baud rate
  *      calculated with UCBRFx = INT([(N/16) – INT(N/16)] × 16)
- * NOTE: ignored when not in oversampling mode
+ *      NOTE: ignored when not in oversampling mode
  * @return: None
  */
 void choose_mod_factor_one_USCIA_UART(uint8_t factor);
 
+/** choose the second modulation level factor
+ * @param - uint8_t factor: the second modulation factor for baud rate
+ *      NOTE: when oversampling is DISABLED then a error calculation is recommened by using
+ *      the formulas starting on page 777 of the family manuals
+ *      However when oversampling ENABLED or for faster calculation, a set of sample factors
+ *      is given on page 776 in table 30-4
+ * @return: None
+ */
+void choose_mod_factor_two_USCIA_UART(uint8_t factor);
+
+//*******************
+//UCA0STATW register
+//*******************
+
+/**
+ * Read the busy flag indicating if the UART is receiving or transmitting
+ * @param: None
+ * @return - uint8_t busy: when set indicates that the UART is either transmitting
+ *      or recieving data, otherwise the controller is idle.
+ */
+uint8_t read_busy_flag_USCIA_UART(void);
+
+/**
+ * Read address status flag bit
+ * @param: None
+ * @return - uint8_t address: when set the last byte stored in the recieve buffer is the address
+ *      otherwise the byte stored is data.
+ */
+uint8_t read_address_flag_USCIA_UART(void);
+
+/**
+ * Read the idle line flag bit
+ * @param: None
+ * @return - uint8_t idle: when set, and idle line was detected, otherwise no idle line
+ */
+uint8_t read_idle_line_flag_USCIA_UART(void);
+
+/**
+ * Read General Error flag
+ * @param: None
+ * @return - uint8_t error: set when some error occurs. When this flag is set some other error
+ *      flag is also set and should be checked
+ */
+uint8_t read_error_flag_USCIA_UART(void);
+
+/**
+ * Read the flag indicating a break condition has occured
+ * @param: None
+ * @return - uint8_t break: if set, then a break condition has occured
+ */
+uint8_t read_break_condition_USCIA_UART(void);
+
+/**
+ * Read the parity error flag
+ * @param: None
+ * @return - uint8_t parityErr: if set, then a parity error has occured indicating transmission error
+ */
+uint8_t read_parity_err_flag_USCIA_UART(void);
+
+/**
+ * Read the overrun error flag
+ * @param: None
+ * @return - uint8_t overrunErr: if set, an overrun error has occured and data has likely been lost
+ */
+uint8_t read_overrun_flag_USCIA_UART(void);
+
+/**
+ * Read the framing error flag
+ * @param: None
+ * @return - uint8_t framingErr: if set, a framming error has occured and a baud rate error is likely.
+ */
+uint8_t read_framming_flag_USCIA_UART(void);
+
+/**
+ * Set an internal loopback mode connecting the receiver to the transmitter
+ * @param - uint8_t loopback: if set then loopback mode interally is enabled
+ * @return: None
+ */
+void loopback_mode_USCIA_UART(uint8_t loopback);
+
+//*******************
+//UCA0RXBUF register
+//*******************
+
+/**
+ * read the RX buffer data. Reading this flag clear the error bits and iterrupt flag
+ * @param: None
+ * @return - uint8_t data: the byte of data stored in the RX buffer. 
+ */
+uint8_t read_RX_buffer_USCIA_UART(void);
+
+//********************
+//UCA0TXBUF register
+//********************
+
+/**
+ * write the TX buffer with data to be transmitted
+ * @param - uint8_t data: the data byte to be transmitted.
+ * @return: None
+ */
+uint8_t write_TX_buffer_USCIA_UART(void);
+
+//********************
+//UCA0ABCTLW register
+//********************
+
+/**
+ * Choose to set or clear the automatic baud rate detection mode
+ * @param - uint8_t autoBaud: setting this will enable auto baud rate detection
+ * @return: None
+ */
+void choose_auto_baud_USCIA_UART(uint8_t autoBaud);
+
+/**
+ * read the break timeout flag
+ * @param: None
+ * @return - uint8_t breakErr: if set, indicates that a break timming error occured
+ */
+uint8_t read_break_err_flag_USCIA_UART(void);
+
+/**
+ * read the sync timeout flag
+ * @param: None
+ * @return - uint8_t sychErr: if set, a sync timeout error has occured
+ */
+uint8_t read_sync_err_flag_USCIA_UART(void);
+
+/**
+ * Set the bit timeout limit for the sync and break bits in auto baud detection mode
+ * @param - uint8_t timeout: enum for the number of bit times for a timeout in auto baud mode
+ * @return: None
+ */
+void set_auto_baud_timeout_USCIA_UART(uint8_t timeout);
+
+//*********************
+//UCA0IRCTL register
+//*********************
+
+/**
+ * Enable or disable the IrDA encoder/decoder
+ * @param - uint8_t enable: when set, enable the IrDA encoder/decoder, otherwise diabled
+ * @return: None
+ */
+void choose_IrDA_enabled_USCIA_UART(uint8_t enable);
 /***********************************************************************************************************************/
 
 
