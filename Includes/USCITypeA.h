@@ -396,7 +396,121 @@ void set_auto_baud_timeout_USCIA_UART(uint8_t timeout);
  * @return: None
  */
 void choose_IrDA_enabled_USCIA_UART(uint8_t enable);
+
+/**
+ * Set the pulse lenght for transmitted bits using the formula tpulse = (UCIRTXPLx +1)/ (2 * fIRTXCLK)
+ * @param - uint8_t pulseTime: 8 bit factor which controls the UCIRTXPLx portion of the formula above.
+ * @return: None
+ */
+void set_TX_pulse_length_USCIA_UART(uint8_t pulseTime);
+
+/**
+ * enable or disable the IrDA recieve filter
+ * @param - uint8_t enabled: when set the filter will be enabled, otherwise the filter is disabled
+ * @return: None
+ */
+void enable_IrDA_filter_USCIA_UART(uint8_t enabled);
+
+/**
+ * choose the polarity of the pulse delivered when a IrDA pulse is detected
+ * @param - uint8_t polarity: settings this bit with deliever a low pulse on TX when RX pulse is seen
+ * 		otherwise a high pulse will be delievered.
+ * @return: None
+ */
+void set_RX_pulse_polarity_USCIA_UART(uint8_t polarity);
+
+/**
+ * select the filter length given by the equation tmin = (UCIRRXFLx + 4) / (2 * fIRTXCLK)
+ * @param - uint8_t filtLength: the lenght of the filter for the UCIRRXFL portion
+ * @return: None
+ */
+void set_RX_filter_length_USCIA_UART(uint8_t filtLength);
+
+//******************
+//UCA0IE register
+//******************
+
+/**
+ * enabled or disable RX interrupts
+ * @param - uint8_t enable: set to enable interrupts otherwise diabled
+ * @return: None
+ */
+void set_RX_interrupts_enabled_USCIA_UART(uint8_t enable);
+
+/**
+ * enabled or disable TX interrupts
+ * @param - uint8_t enable: set to enable interrupts otherwise diabled
+ * @return: None
+ */
+void set_TX_interrupts_enabled_USCIA_UART(uint8_t enable);
+
+/**
+ * enable or disable start bit interrupts
+ * @param - uint8_t enable: set to enable interrupts otherwise diabled
+ * @return: None
+ */
+void set_start_bit_interrupts_enabled_USCIA_UART(uint8_t enable);
+
+/**
+ * enable or disable transmit complete interrupts
+ * @param - uint8_t enable: set to enable interrupts otherwise diabled
+ * @return: None
+ */
+void set_TX_complete_interrupts_enabled_USCIA_UART(uint8_t enable);
+
+/**
+ * read RX interrupt flag
+ * @param: None
+ * @return - uint8_t flag: if set then the specified interrupt will trigger if enabled, and
+ * 		trigger condition has occured
+ */
+uint8_t read_RX_interrupt_flag(void);
+
+/**
+ * read TX interrupt flag
+ * @param: None
+ * @return - uint8_t flag: if set then the specified interrupt will trigger if enabled, and
+ * 		trigger condition has occured
+ */
+uint8_t read_TX_interrupt_flag(void);
+
+/**
+ * read Start Bit interrupt flag
+ * @param: None
+ * @return - uint8_t flag: if set then the specified interrupt will trigger if enabled, and
+ * 		trigger condition has occured
+ */
+uint8_t read_start_bit_interrupt_flag(void);
+
+/**
+ * read transmission complete interrupt flag
+ * @param: None
+ * @return - uint8_t flag: if set then the specified interrupt will trigger if enabled, and
+ * 		trigger condition has occured
+ */
+uint8_t read_TX_complete_interrupt_flag(void);
 /***********************************************************************************************************************/
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 #endif
+
+
+
+
+
+
+
+
+

@@ -266,19 +266,120 @@ void set_auto_baud_timeout_USCIA_UART(uint8_t timeout){
 
 void choose_IrDA_enabled_USCIA_UART(uint8_t enable){
     if(enable){
-        UCA0IRCTL |= BIT_0;
+        UCA0IRCTL |= UCIREN;
     }
     else{
-        UCA0IRCTL &= ~(BIT_0);
+        UCA0IRCTL &= ~(UCIREN);
     }
 }
 
 void choose_IrDA_clk_source_USCIA_UART(uint8_t clockSrc){
     if(clockSrc){
-        UCA0IRCTL |= BIT_1;
+        UCA0IRCTL |= UCIRTXCLK;
     }
     else{
-        UCA0IRCTL &= ~(BIT_1);
+        UCA0IRCTL &= ~(UCIRTXCLK);
     }
 }
+
+void set_TX_pulse_length_USCIA_UART(uint8_t pulseTime){
+	uint16_t pulseSet;
+	UCA0IRCTL &= ~ (UCIRTXPL0 | UCIRTXPL1 | UCIRTXPL2 | UCIRTXPL3 | UCIRTXPL4 | UCIRTXPL5);// clear the bits
+	if(pulseTime > (BIT_0 | BIT_1 | BIT_2 | BIT_3 | BIT_4 | BIT_5)){
+		pulseSet = DEFAULT_SELECTION;
+	}
+	else{
+		pulseSet = (pulseTime << BIT_1); //Shift over by two to fill the bits 7-2
+	}
+	UCA0IRCTL |= pulseSet;
+}
+
+void enable_IrDA_filter_USCIA_UART(uint8_t enabled){
+	if(enabled){
+		UCA0IRCTL |= UCIRRXFE;
+	}
+	else{
+		UCA0IRCTL &= ~(UCIRRXFE);
+	}
+}
+
+void set_RX_pulse_polarity_USCIA_UART(uint8_t polarity){
+	if(polarity){
+		UCA0IRCTL |= UCIRRXPL;
+	}
+	else{
+		UCA0IRCTL &= ~(UCIRRXPL);
+	}
+}
+
+void set_RX_filter_length_USCIA_UART(uint8_t filtLength){
+	uint16_t filtSet;
+	UCA0IRCTL &= ~(UCIRRXFL0 | UCIRRXFL1 | UCIRRXFL2 | UCIRRXFL3 | UCIRRXFL4 | UCIRRXFL5);// clear the bits
+	if(filtLenght > (BIT_0 | BIT_1 | BIT_2 | BIT_3 | BIT_4 | BIT_5)){
+		filtSet = DEFAULT_SELECTION;
+	}
+	else{
+		filtSet = (filtLength << (BIT_3 | BIT_2)); //Shift over by 10 to fill the bits 15-10
+	}
+	UCA0IRCTL |= filtSet;
+}
+
+void set_RX_interrupts_enabled_USCIA_UART(uint8_t enable){
+	if(enable){
+		UCA0IE |= UCRXIE;
+	}
+	else{
+		UCA0IE &= ~(UCRXIE);
+	}
+}
+
+void set_TX_interrupts_enabled_USCIA_UART(uint8_t enable){
+	if(enable){
+		UCA0IE |= UCTXIE;
+	}
+	else{
+		UCA0IE &= ~(UCTXIE);
+	}
+}
+
+void set_start_bit_itnerrupts_enabled_USCIA_UART(uint8_t enable){
+	if(enable){
+		UCA0IE |= UCSTTIE;
+	}
+	else{
+		UCA0IE &= ~(UCSTTIE);
+	}
+}
+
+void set_TX_complete_interrupts_enabled_USCIA_UART(uint8_t enable){
+	if(enable){
+		UCA0IE |= UCTXCPTIE;
+	}
+	else{
+		UCA0IE &= ~(UCTXCPTIE);
+	}
+}
+
+uint8_t read_RX_interrupt_flag(void){
+	return (UCA0IFG & UCRXIFG);
+}
+
+uint8_t read_TX_interrupt_flag(void){
+	return (UCA0IFG & UCTXIFG);
+}
+
+uint8_t read_start_bit_interrupt_flag(void){
+	return (UCA0IFG & UCSTTIFG);
+}
+
+uint8_t read_TX_complete_interrupt_flag(void){
+	return (UCA0IFG & UCTXCPTIFG);
+}
+
+
+	
+
+
+
+
 /*******************************************************************************/
