@@ -1,5 +1,5 @@
 /**
- * @file uart.h
+ * @file USCITypeA.h
  * @author Nathan Lindberg (nml6520@g.rit.edu)
  * @brief header file containing hardware specific functions for configuring Type A USCIA_H
  *      which can be used as either a UART of SPI device. 
@@ -352,7 +352,7 @@ uint8_t read_RX_buffer_USCIA_UART(void);
  * @param - uint8_t data: the data byte to be transmitted.
  * @return: None
  */
-uint8_t write_TX_buffer_USCIA_UART(void);
+void write_TX_buffer_USCIA_UART(uint8_t data);
 
 //********************
 //UCA0ABCTLW register

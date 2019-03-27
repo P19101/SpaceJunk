@@ -1,5 +1,5 @@
 /**
- * @file uart.c
+ * @file USCITypeA.c
  * @author Nathan Lindberg (nml6520@g.rit.edu)
  * @brief source file for configuring Type A USCI which can be used as either a UART
  *      or SPI device. 
@@ -228,6 +228,9 @@ uint8_t read_RX_buffer(void){
     return UCA0RXBUF;
 }
 
+void write_TX_buffer_USCIA_UART(uint8_t data){
+	UCA0TXBUF = data;
+}
 
 void choose_auto_baud_USCIA_UART(uint8_t autoBaud){
     if(autoBaud){
