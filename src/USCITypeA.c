@@ -171,7 +171,7 @@ void choose_mod_factor_one_USCIA_UART(uint8_t factor){
     else{
         factorSet = factor;
     }
-    UCA0MCTLW |= (factorSet << 4);
+    UCA0MCTLW |= (factorSet << BIT_3); // shift over 4 bits to fill bits 4-7.
     
 }
 

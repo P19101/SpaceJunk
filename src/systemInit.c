@@ -52,3 +52,6 @@ void configure_clock_sources(void){
 	CSCTL5 &= (LFXTOFFG | HFXTOFFG);
 }
 	
+void configure_UART(void){
+	
+}

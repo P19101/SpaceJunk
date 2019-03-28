@@ -44,4 +44,15 @@ void configure_ADC(void);
  */
 void configure_clock_sources(void);
 
+/**
+ * Call all setup for the default UART comms. Configues UART 1 for 19200 baud for main comms
+ * @param: None
+ * @return: None
+ */
+void configure_UART(void);
 #endif
+
+
+
+
+
