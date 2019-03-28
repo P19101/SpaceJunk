@@ -163,7 +163,7 @@ void choose_oversampling_mode_USCIA_UART(uint8_t oversample){
 }
 
 void choose_mod_factor_one_USCIA_UART(uint8_t factor){
-    uint8_t factorSet;
+    uint16_t factorSet;
     UCA0MCTLW &= ~(UCBRF0 | UCBRF1 | UCBRF2 | UCBRF3); // clear the four bits which make up the first mod factor.
     if(factor > (BIT_0 | BIT_1 | BIT_2 | BIT_3)){ //max is 0x0F or 00001111
         factorSet = DEFAULT_SELECTION;
@@ -171,7 +171,7 @@ void choose_mod_factor_one_USCIA_UART(uint8_t factor){
     else{
         factorSet = factor;
     }
-    UCA0MCTLW |= factorSet;
+    UCA0MCTLW |= (factorSet << 4);
     
 }
 

@@ -52,10 +52,10 @@ void select_baud_rate_UART(uint8_t baud){
     uint8_t modFactorTwo;
     switch(baud){
         case BAUD_9600:
-            baudInt = 6;
+            baudInt = 3;
             oversample = ENABLE;
-            modFactorOne = 8;
-            modFactorTwo = 0x20;
+            modFactorOne = 3;
+            modFactorTwo = 0x2;
             break;
         // all numbers are taken from the family manual talbe 30-5 and pg 779
         /*
