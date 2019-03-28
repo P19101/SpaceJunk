@@ -60,7 +60,7 @@ void send_string_UART(uint8_t dataPtr[], uint16_t size);
  * @param - uint16_t size: the size of the data in bytes to read
  * @return - uint8_t error: any errors that may occur while reading the data.
  */
-uint8_t read_string_UART(uint8_t dataPtr[], uint16_t size);
+int8_t read_string_UART(uint8_t dataPtr[], uint16_t size);
 
 
 #endif

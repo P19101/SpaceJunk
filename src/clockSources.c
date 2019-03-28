@@ -9,7 +9,7 @@
 #include "commonHeader.h"
  
 void unlock_CS_register_set(void){
-	CSCTL0 |= CSKEY;
+    CSCTL0 = CSKEY;
 }
 
 void set_digital_clock_frequency(uint8_t frequency){
@@ -76,35 +76,6 @@ void select_ACLK_source(uint8_t source){
 
 void select_MCLK_source(uint8_t source){
 	uint16_t sourceSet;
-	CSCTL2 &= ~(SELS0 | SELS1 | SELS2);
-	switch(source){
-		case LFXTCLK:
-			sourceSet = DEFAULT_SELECTION;
-			break;
-		case VLOCLK:
-			sourceSet = SELS0;
-			break;
-		case LFMODCLK:
-			sourceSet = SELS1;
-			break;
-		case DCOCLK:
-			sourceSet = SELS0 | SELS1;
-			break;
-		case MODCLK:
-			sourceSet = SELS2;
-			break;
-		case HFXTCLK:
-			sourceSet = SELS0 | SELS2;
-			break;
-		default:
-			sourceSet = DEFAULT_SELECTION;
-			break;
-	}
-	CSCTL2 |= sourceSet;
-}
-
-void select_SMCLK_source(uint8_t source){
-	uint16_t sourceSet;
 	CSCTL2 &= ~(SELM0 | SELM1 | SELM2);
 	switch(source){
 		case LFXTCLK:
@@ -132,9 +103,38 @@ void select_SMCLK_source(uint8_t source){
 	CSCTL2 |= sourceSet;
 }
 
+void select_SMCLK_source(uint8_t source){
+	uint16_t sourceSet;
+	CSCTL2 &= ~(SELS0 | SELS1 | SELS2);
+	switch(source){
+		case LFXTCLK:
+			sourceSet = DEFAULT_SELECTION;
+			break;
+		case VLOCLK:
+			sourceSet = SELS0;
+			break;
+		case LFMODCLK:
+			sourceSet = SELS1;
+			break;
+		case DCOCLK:
+			sourceSet = SELS0 | SELS1;
+			break;
+		case MODCLK:
+			sourceSet = SELS2;
+			break;
+		case HFXTCLK:
+			sourceSet = SELS0 | SELS2;
+			break;
+		default:
+			sourceSet = DEFAULT_SELECTION;
+			break;
+	}
+	CSCTL2 |= sourceSet;
+}
+
 void auxilary_clock_division_factor(uint8_t div){
 	uint16_t divSet;
-	CSCTL2 &= ~(DIVA0 | DIVA1 | DIVA2);
+	CSCTL3 &= ~(DIVA0 | DIVA1 | DIVA2);
 	switch(div){
 		case FACTOR_1:
 			divSet = DEFAULT_SELECTION;
@@ -158,12 +158,12 @@ void auxilary_clock_division_factor(uint8_t div){
 			divSet = DEFAULT_SELECTION;
 			break;
 	}
-	CSCTL2 |= divSet;
+	CSCTL3 |= divSet;
 }
 
 void master_clock_division_factor(uint8_t div){
 	uint16_t divSet;
-	CSCTL2 &= ~(DIVM0 | DIVM1 | DIVM2);
+	CSCTL3 &= ~(DIVM0 | DIVM1 | DIVM2);
 	switch(div){
 		case FACTOR_1:
 			divSet = DEFAULT_SELECTION;
@@ -187,12 +187,12 @@ void master_clock_division_factor(uint8_t div){
 			divSet = DEFAULT_SELECTION;
 			break;
 	}
-	CSCTL2 |= divSet;
+	CSCTL3 |= divSet;
 }
 
 void subsystem_clock_division_factor(uint8_t div){
 	uint16_t divSet;
-	CSCTL2 &= ~(DIVS0 | DIVS1 | DIVS2);
+	CSCTL3 &= ~(DIVS0 | DIVS1 | DIVS2);
 	switch(div){
 		case FACTOR_1:
 			divSet = DEFAULT_SELECTION;
@@ -216,7 +216,7 @@ void subsystem_clock_division_factor(uint8_t div){
 			divSet = DEFAULT_SELECTION;
 			break;
 	}
-	CSCTL2 |= divSet;
+	CSCTL3 |= divSet;
 }
 
 void high_freq_clk_drive_strength(uint8_t drive){

@@ -18,6 +18,8 @@ uint8_t read_GPIO_input_pin(uint8_t port, uint8_t pin){
             return (P3IN & pin);
         case PORT_4:
             return (P4IN & pin);
+        case PORT_J:
+            return (PJIN & pin);
         default:
             return DEFAULT_SELECTION;
     }
@@ -33,6 +35,8 @@ uint8_t read_GPIO_output_pin(uint8_t port, uint8_t pin){
             return (P3OUT & pin);
         case PORT_4:
             return (P4OUT & pin);
+        case PORT_J:
+            return (PJOUT & pin);
         default:
             return DEFAULT_SELECTION;
     }
@@ -48,6 +52,8 @@ uint8_t read_GPIO_resistor_pull_direction(uint8_t port, uint8_t pin){
             return (P3OUT & pin);
         case PORT_4:
             return (P4OUT & pin);
+        case PORT_J:
+            return (PJOUT & pin);
         default:
             return DEFAULT_SELECTION;
     }
@@ -87,6 +93,14 @@ void set_GPIO_resistor_pull_direction(uint8_t port, uint8_t pin, uint8_t pullDir
                 P4OUT &= ~pin;
             }
             break;
+        case PORT_J:
+            if(pullDirection){
+                PJOUT |= pin;
+            }
+            else{
+                PJOUT &= ~pin;
+            }
+            break;
         default:
             break;
     }
@@ -106,6 +120,9 @@ void set_GPIO_pin(uint8_t port, uint8_t pin){
         case PORT_4:
             P4OUT |= pin;
 			break;
+        case PORT_J:
+            PJOUT |= pin;
+            break;
         default:
             break;
 	}
@@ -125,6 +142,9 @@ void clear_GPIO_pin(uint8_t port, uint8_t pin){
         case PORT_4:
             P4OUT &= ~(pin);
 			break;
+        case PORT_J:
+            PJOUT &= ~(pin);
+            break;
         default:
 			break;
 	}
@@ -144,6 +164,9 @@ void set_GPIO_pin_output(uint8_t port, uint8_t pin){
         case PORT_4:
             P4DIR |= pin;
 			break;
+        case PORT_J:
+            PJDIR |= pin;
+            break;
         default:
 			break;
 	}
@@ -163,6 +186,9 @@ void set_GPIO_pin_input(uint8_t port, uint8_t pin){
         case PORT_4:
             P4DIR &= ~(pin);
 			break;
+        case PORT_J:
+            PJDIR &= ~(pin);
+            break;
         default:
 			break;
 	}
@@ -180,6 +206,9 @@ void enable_GPIO_pin_pull_resistor(uint8_t port, uint8_t pin){
             break;
         case PORT_4:
             P4REN |= pin;
+            break;
+        case PORT_J:
+            PJREN |= pin;
             break;
         default:
             break;
@@ -199,6 +228,9 @@ void disable_GPIO_pin_pull_resistor(uint8_t port , uint8_t pin){
             break;
         case PORT_4:
             P4REN &= ~(pin);
+            break;
+        case PORT_J:
+            PJREN &= ~(pin);
             break;
         default:
             break;
@@ -303,6 +335,30 @@ void choose_GPIO_function(uint8_t port, uint8_t pin, uint8_t function){
 					break;
 			}
 			break;
+        case PORT_J:
+            switch(function){
+                case DEFAULT_GPIO:
+                    PJSEL0 &= ~(pin);
+                    PJSEL1 &= ~(pin);
+                    break;
+                case PRIMARY_MOD:
+                    PJSEL0 |= pin;
+                    PJSEL1 &= ~(pin);
+                    break;
+                case SECONDARY_MOD:
+                    PJSEL0 &= ~(pin);
+                    PJSEL1 |= pin;
+                    break;
+                case TERTIARY_MOD:
+                    PJSEL0 |= pin;
+                    PJSEL1 |= pin;
+                    break;
+                default:
+                    PJSEL0 &= ~(pin);
+                    PJSEL1 &= ~(pin);
+                    break;
+            }
+            break;
         default:
 			break;
 	}

@@ -17,64 +17,64 @@ void choose_USCIA_operation_mode(uint8_t mode){
 }
 
 /********************UART SPECIFIC FUNCTIONS************************/
-void hold_USCIA_reset(void){
+void hold_USCIA_UART_reset(void){
     UCA0CTL1 |= UCSWRST;
 }
 
-void release_USCIA_reset(void){
+void release_USCIA_UART_reset(void){
     UCA0CTL1 &= ~UCSWRST;
 }
 
-void transmit_break_bit_USCIA(void){
+void transmit_break_bit_USCIA_UART(void){
     UCA0CTL1 |= UCTXBRK;
 }
 
-void clear_break_bit_USCIA(void){
+void clear_break_bit_USCIA_UART(void){
     UCA0CTL1 &= ~UCTXBRK;
 }
 
-void set_next_byte_address_USCIA(void){
+void set_next_byte_address_USCIA_UART(void){
     UCA0CTL1 |= UCTXADDR;
 }
 
-void clear_next_byte_address_USCIA(void){
+void clear_next_byte_address_USCIA_UART(void){
     UCA0CTL1 &= ~UCTXADDR;
 }
 
-void set_dormant_mode_USCIA(void){
+void set_dormant_mode_USCIA_UART(void){
     UCA0CTL1 |= UCDORM;
 }
 
-void clear_dormant_mode_USCIA(void){
+void clear_dormant_mode_USCIA_UART(void){
     UCA0CTL1 &= ~UCDORM;
 }
 
-void break_interrupt_enabled_USCIA(void){
+void break_interrupt_enabled_USCIA_UART(void){
     UCA0CTL1 |= UCBRKIE;
 }
 
-void break_interrupt_diabled_USCIA(void){
+void break_interrupt_diabled_USCIA_UART(void){
     UCA0CTL1 &= ~UCBRKIE;
 }
 
-void error_byte_interrupt_enabled_USCIA(void){
+void error_byte_interrupt_enabled_USCIA_UART(void){
     UCA0CTL1 |= UCRXEIE;
 }
 
-void error_byte_interrupt_disabled_USCIA(void){
+void error_byte_interrupt_disabled_USCIA_UART(void){
     UCA0CTL1 &= ~UCRXEIE;
 }
 
-void set_clock_source_USCIA(uint8_t source){
+void set_clock_source_USCIA_UART(uint8_t source){
     UCA0CTL1 &= ~(UCSSEL1 | UCSSEL0);
     switch(source){
-        case UCLKI:
+        case USCIA_UCLKI:
             UCA0CTL1 |= DEFAULT_SELECTION;
             break;
-        case ACLK:
+        case USCIA_ACLK:
             UCA0CTL1 |= UCSSEL0;
             break;
-        case SMCLK:
+        case USCIA_SMCLK:
             UCA0CTL1 |= UCSSEL1;
             break;
         default:
@@ -224,7 +224,7 @@ void loopback_mode_USCIA_UART(uint8_t loopback){
     }
 }
 
-uint8_t read_RX_buffer(void){
+uint8_t read_RX_buffer_USCIA_UART(void){
     return UCA0RXBUF;
 }
 
@@ -234,35 +234,35 @@ void write_TX_buffer_USCIA_UART(uint8_t data){
 
 void choose_auto_baud_USCIA_UART(uint8_t autoBaud){
     if(autoBaud){
-        UCA0ACBTL |= UCABDEN;
+        UCA0ABCTL |= UCABDEN;
     }
     else{
-        UCA0ACBTL &= ~(UCABDEN);
+        UCA0ABCTL &= ~(UCABDEN);
     }
 }
 
 uint8_t read_break_err_flag_USCIA_UART(void){
-    return (UCA0ACBTL & UCBTOE);
+    return (UCA0ABCTL & UCBTOE);
 }
 
 uint8_t read_sync_err_flag_USCIA_UART(void){
-    return (UCA0ACBTL & UCSTOE);
+    return (UCA0ABCTL & UCSTOE);
 }
 
 void set_auto_baud_timeout_USCIA_UART(uint8_t timeout){
-    UCA0ACBTL &= ~(UCDELIM0 | UCDELIM1); 
+    UCA0ABCTL &= ~(UCDELIM0 | UCDELIM1);
     switch(timeout){
         case ONE_BIT_TIME:
-            UCA0ACBTL |= DEFAULT_SELECTION;
+            UCA0ABCTL |= DEFAULT_SELECTION;
             break;
         case TWO_BIT_TIME:
-            UCA0ACBTL |= UCDELIM0;
+            UCA0ABCTL |= UCDELIM0;
             break;
         case THREE_BIT_TIME:
-            UCA0ACBTL |= UCDELIM1;
+            UCA0ABCTL |= UCDELIM1;
             break;
         case FOUR_BIT_TIME:
-            UCA0ACBTL |= (UCDELIM0 | UCDELIM1);
+            UCA0ABCTL |= (UCDELIM0 | UCDELIM1);
             break;
     }
 }
@@ -318,7 +318,7 @@ void set_RX_pulse_polarity_USCIA_UART(uint8_t polarity){
 void set_RX_filter_length_USCIA_UART(uint8_t filtLength){
 	uint16_t filtSet;
 	UCA0IRCTL &= ~(UCIRRXFL0 | UCIRRXFL1 | UCIRRXFL2 | UCIRRXFL3 | UCIRRXFL4 | UCIRRXFL5);// clear the bits
-	if(filtLenght > (BIT_0 | BIT_1 | BIT_2 | BIT_3 | BIT_4 | BIT_5)){
+	if(filtLength > (BIT_0 | BIT_1 | BIT_2 | BIT_3 | BIT_4 | BIT_5)){
 		filtSet = DEFAULT_SELECTION;
 	}
 	else{

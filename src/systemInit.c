@@ -8,9 +8,9 @@
 
 
 void configure_sys(void){
-	configure_GIPO();
+    configure_GIPO();
+    configure_clock_sources();
 	configure_ADC();
-	configure_clock_sources();
 }
 
 void configure_GIPO(void){
@@ -42,12 +42,13 @@ void configure_ADC(void){
 void configure_clock_sources(void){
 	// unlocking the CS registers must always be the first step. 
 	unlock_CS_register_set();	
+	default_clock_sources();
 	diabled_conditional_request();
 	diabled_clock_signals();
 	high_low_freq_drive_strengths();
 	default_clock_divisors();
-	default_clock_sources();
 	high_freq_clk_range(HIGH_FREQ_RANGE);
 	set_digital_clock_frequency(DIGITAL_CLK_FREQ);
+	CSCTL5 &= (LFXTOFFG | HFXTOFFG);
 }
 	

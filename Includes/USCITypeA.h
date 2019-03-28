@@ -28,9 +28,9 @@ void choose_USCIA_operation_mode(uint8_t mode);
  * This section is only for when the UCA0CTL0 SYNC bit is CLEAR indicating that the USCIA is in asychronous UART mode.
  */
 typedef enum{
-    UCLKI, // this is the external clock provided by the other device in SPI mode
-    ACLK,
-    SMCLK
+    USCIA_UCLKI, // this is the external clock provided by the other device in SPI mode
+    USCIA_ACLK,
+    USCIA_SMCLK
 }clockSourcesUSCIAUARTMode;
 
 typedef enum{

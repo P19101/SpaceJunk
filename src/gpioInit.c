@@ -13,6 +13,7 @@ void set_port_output_pins(void){
     int port_2_outs[] = PORT_2_OUTPUTS;
     int port_3_outs[] = PORT_3_OUTPUTS;
     int port_4_outs[] = PORT_4_OUTPUTS;
+    int port_j_outs[] = PORT_J_OUTPUTS;
 
     // First set pins for PORT1
     uint8_t i = 0;
@@ -46,6 +47,14 @@ void set_port_output_pins(void){
         set_GPIO_pin_output(PORT_4, current_pin);
         current_pin = port_4_outs[++i];
     }
+
+    // PORTJ
+    i = 0;
+    current_pin = port_j_outs[0];
+    while(current_pin != DEFAULT_SELECTION){
+        set_GPIO_pin_output(PORT_J, current_pin);
+        current_pin = port_j_outs[++i];
+    }
 }
 
 void enable_port_pull_resistors(void){
@@ -53,6 +62,7 @@ void enable_port_pull_resistors(void){
     int port_2_pulled[] = PORT_2_PULLED_PINS;
     int port_3_pulled[] = PORT_3_PULLED_PINS;
     int port_4_pulled[] = PORT_4_PULLED_PINS;
+    int port_j_pulled[] = PORT_J_PULLED_PINS;
 
     // First set pins for PORT1
     uint8_t i = 0;
@@ -86,6 +96,14 @@ void enable_port_pull_resistors(void){
         enable_GPIO_pin_pull_resistor(PORT_4, current_pin);
         current_pin = port_4_pulled[++i];
     }
+
+    // PORTJ
+    i = 0;
+    current_pin = port_j_pulled[0];
+    while(current_pin != DEFAULT_SELECTION){
+        enable_GPIO_pin_pull_resistor(PORT_J, current_pin);
+        current_pin = port_j_pulled[++i];
+    }
 }
 
 void set_pull_up_resistors(void){
@@ -93,6 +111,7 @@ void set_pull_up_resistors(void){
 	int port_2_pulls[] = PORT_2_PULL_UP;
 	int port_3_pulls[] = PORT_3_PULL_UP;
 	int port_4_pulls[] = PORT_4_PULL_UP;
+	int port_j_pulls[] = PORT_J_PULL_UP;
 	
 	uint8_t i = 0;
 	int current_pin;
@@ -126,6 +145,14 @@ void set_pull_up_resistors(void){
         set_GPIO_resistor_pull_direction(PORT_4, current_pin, PULL_UP);
         current_pin = port_4_pulls[++i];
     }
+
+    // PORTJ
+    i = 0;
+    current_pin = port_j_pulls[0];
+    while(current_pin != DEFAULT_SELECTION){
+        set_GPIO_resistor_pull_direction(PORT_J, current_pin, PULL_UP);
+        current_pin = port_j_pulls[++i];
+    }
 }
 
 void set_outputs_high(void){
@@ -133,6 +160,7 @@ void set_outputs_high(void){
     int port_2_out_high[] = PORT_2_HIGHS;
     int port_3_out_high[] = PORT_3_HIGHS;
     int port_4_out_high[] = PORT_4_HIGHS;
+    int port_j_out_high[] = PORT_J_HIGHS;
 
     // First set pins for PORT1
     uint8_t i = 0;
@@ -166,6 +194,14 @@ void set_outputs_high(void){
         set_GPIO_pin(PORT_4, current_pin);
         current_pin = port_4_out_high[++i];
     }
+
+    // PORTJ
+    i = 0;
+    current_pin = port_j_out_high[0];
+    while(current_pin != DEFAULT_SELECTION){
+        set_GPIO_pin(PORT_J, current_pin);
+        current_pin = port_j_out_high[++i];
+    }
 }
 
 void set_pin_functions(void){
@@ -173,16 +209,19 @@ void set_pin_functions(void){
     int port_2_pri[] = PORT_2_PRIMARIES;
     int port_3_pri[] = PORT_3_PRIMARIES;
     int port_4_pri[] = PORT_4_PRIMARIES;
+    int port_j_pri[] = PORT_J_PRIMARIES;
 
     int port_1_sec[] = PORT_1_SECONDARIES;
     int port_2_sec[] = PORT_2_SECONDARIES;
     int port_3_sec[] = PORT_3_SECONDARIES;
     int port_4_sec[] = PORT_4_SECONDARIES;
+    int port_j_sec[] = PORT_J_SECONDARIES;
 
     int port_1_tri[] = PORT_1_TERTIARIES;
     int port_2_tri[] = PORT_2_TERTIARIES;
     int port_3_tri[] = PORT_3_TERTIARIES;
     int port_4_tri[] = PORT_4_TERTIARIES;
+    int port_j_tri[] = PORT_J_TERTIARIES;
 
     /*** PRIMARY SET PINS ***/
     // First set pins for PORT1
@@ -217,10 +256,19 @@ void set_pin_functions(void){
         choose_GPIO_function(PORT_4, current_pin, PRIMARY_MOD);
         current_pin = port_4_pri[++i];
     }
+
+    // PORTJ
+    i = 0;
+    current_pin = port_j_pri[0];
+    while(current_pin != DEFAULT_SELECTION){
+        choose_GPIO_function(PORT_J, current_pin, PRIMARY_MOD);
+        current_pin = port_j_pri[++i];
+    }
     /*********************************************************/
 
     /*** SECONDARY SET PINS ***/
     // First set pins for PORT1
+    i = 0;
     current_pin = port_1_sec[i];
     while(current_pin != DEFAULT_SELECTION){
         choose_GPIO_function(PORT_1, current_pin, SECONDARY_MOD);
@@ -250,10 +298,19 @@ void set_pin_functions(void){
         choose_GPIO_function(PORT_4, current_pin, SECONDARY_MOD);
         current_pin = port_4_sec[++i];
     }
+
+    // PORTJ
+    i = 0;
+    current_pin = port_j_sec[0];
+    while(current_pin != DEFAULT_SELECTION){
+        choose_GPIO_function(PORT_J, current_pin, SECONDARY_MOD);
+        current_pin = port_j_sec[++i];
+    }
     /*******************************************************/
 
     /*** TERTIARY SET PINS ***/
     // First set pins for PORT1
+    i = 0;
     current_pin = port_1_tri[i];
     while(current_pin != DEFAULT_SELECTION){
         choose_GPIO_function(PORT_1, current_pin, TERTIARY_MOD);
@@ -283,6 +340,14 @@ void set_pin_functions(void){
         choose_GPIO_function(PORT_4, current_pin, TERTIARY_MOD);
         current_pin = port_4_tri[++i];
     }
+
+    // PORTJ
+    i = 0;
+    current_pin = port_j_tri[0];
+    while(current_pin != DEFAULT_SELECTION){
+        choose_GPIO_function(PORT_J, current_pin, TERTIARY_MOD);
+        current_pin = port_j_tri[++i];
+    }
     /******************************************************/
 }
 
@@ -291,6 +356,7 @@ void enable_pin_interrupts(void){
     int port_2_ints[] = PORT_2_INTERRUPTS;
     int port_3_ints[] = PORT_3_INTERRUPTS;
     int port_4_ints[] = PORT_4_INTERRUPTS;
+    int port_j_ints[] = PORT_J_INTERRUPTS;
 
     // First set pins for PORT1
     uint8_t i = 0;
@@ -324,6 +390,14 @@ void enable_pin_interrupts(void){
         enable_GPIO_interrupt(PORT_4, current_pin);
         current_pin = port_4_ints[++i];
     }
+
+    // PORTJ
+    i = 0;
+    current_pin = port_j_ints[0];
+    while(current_pin != DEFAULT_SELECTION){
+        enable_GPIO_interrupt(PORT_J, current_pin);
+        current_pin = port_j_ints[++i];
+    }
 }
 
 void set_interrupts_edges(void){
@@ -331,6 +405,7 @@ void set_interrupts_edges(void){
     int port_2_edge[] = PORT_2_EDGES;
     int port_3_edge[] = PORT_3_EDGES;
     int port_4_edge[] = PORT_4_EDGES;
+    int port_j_edge[] = PORT_J_EDGES;
 
     // First set pins for PORT1
     uint8_t i = 0;
@@ -364,6 +439,14 @@ void set_interrupts_edges(void){
         choose_interrupt_edge(PORT_4, current_pin, HIGH_TO_LOW);
         current_pin = port_4_edge[++i];
     }
+
+    // PORTJ
+    i = 0;
+    current_pin = port_j_edge[0];
+    while(current_pin != DEFAULT_SELECTION){
+        choose_interrupt_edge(PORT_J, current_pin, HIGH_TO_LOW);
+        current_pin = port_j_edge[++i];
+    }
 }
 
 void clear_interrupt_flags(void){
@@ -372,4 +455,5 @@ void clear_interrupt_flags(void){
     P2IFG = DEFAULT_SELECTION;
     P3IFG = DEFAULT_SELECTION;
     P4IFG = DEFAULT_SELECTION;
+    // NO interrupt flags for Port J
 }

@@ -15,6 +15,8 @@
 #define ENABLE				0x0001 // use to enable pins and stuff
 #define OFF					0x0000 // use to turn pins off and stuff
 #define DISABLE				0x0000 // use to disable pins and stuff
+#define ACTIVE_LOW          0x0000 // use when a signal will be enabled with a '0'
+#define ACTIVE_HIGH         0x0000 // use when a signal will be enabled with a '1'
 #define LOW_BYTE            0x00FF // use when needing the low byte from a 16 bit number
 #define HIGH_BYTE           0xFF00 // use when needing the high byte from a 16 bit number
 #define HIGH_BYTE_SHIFT     8      // use to shift a high byte into the lower part of a variable for reading. 
