@@ -209,6 +209,7 @@
 #define		SMCLK_COND_REQ				ENABLE
 #define		ACLK_COND_REQ				ENABLE
 
-
 /********************************************************************************/
+
+// TODO: the default UART stuff should probably be here. 
 #endif

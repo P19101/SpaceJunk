@@ -39,5 +39,7 @@
 #define BIT_14              0x4000
 #define BIT_15              0x8000
 
+#define input typedef struct
+#define output input
 
 #endif

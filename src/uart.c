@@ -8,6 +8,11 @@
 #include "uart.h"
 #include "USCITypeA.h"
 
+void send_byte_UART(uint8_t data){
+    //TODO: add some timeout mechanics with the timers.
+    write_TX_buffer_USCIA_UART(data);
+}
+
 uint8_t read_byte_UART(void){
     return read_RX_buffer_USCIA_UART();
 }
@@ -46,12 +51,17 @@ int8_t read_string_UART(uint8_t dataPtr[], uint16_t size){
 void select_baud_rate_UART(uint8_t baud){
     // one variable for each of the four registers which controls the baud rate.
     // as of now this function only handles the 32.768kHz clock.
+	
+	/* TODO: currently running of the SMCLK at 1MHz due to an error with the 32k crystal. 
+	 * the crystal would probably be better so hopefully it can be fixed. for now only
+	 * one baud is supported. 
+	 */
     uint16_t baudInt;
     uint8_t oversample;
     uint8_t modFactorOne;
     uint8_t modFactorTwo;
     switch(baud){
-        case BAUD_9600:
+        case BAUD_19200:
             baudInt = 3;
             oversample = ENABLE;
             modFactorOne = 3;
@@ -95,9 +105,4 @@ void select_baud_rate_UART(uint8_t baud){
     choose_oversampling_mode_USCIA_UART(oversample);
     choose_mod_factor_one_USCIA_UART(modFactorOne);
     choose_mod_factor_two_USCIA_UART(modFactorTwo);
-}
-
-void send_byte_UART(uint8_t data){
-    //TODO: add some timeout mechanics with the timers.
-    write_TX_buffer_USCIA_UART(data);
 }

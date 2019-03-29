@@ -8,9 +8,11 @@
 
 
 void configure_sys(void){
+	// gpio controls the external clocks so it is configured first. 
     configure_GIPO();
     configure_clock_sources();
 	configure_ADC();
+	configure_UART();
 }
 
 void configure_GIPO(void){
@@ -53,5 +55,9 @@ void configure_clock_sources(void){
 }
 	
 void configure_UART(void){
-	
+	hold_USCIA_UART_reset();
+	choose_USCIA_operation_mode(UART_MODE);
+	set_clock_source_USCIA_UART(USCIA_SMCLK);
+	select_baud_rate_UART(BAUD_19200);
+	release_USCIA_UART_reset();
 }

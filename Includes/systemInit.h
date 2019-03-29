@@ -12,6 +12,7 @@
 #include "pinUsage.h"
 #include "adc12Bit.h"
 #include "clockSourcesInit.h"
+#include "USCITypeA.H"
 
 /**
  * Master function which will call all corrisponding configuration functions.
