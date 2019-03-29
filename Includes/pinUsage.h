@@ -49,8 +49,8 @@
 										// 21 	- P2.6
 										// 22 	- TESTMODE/SBWCLK
 										// 23 	- ~RST/NMI/SBWTDIO
-										// 24 	- P2.0
-										// 25	- P2.1
+//UART GROUND TX						// 24 	- P2.0
+//UART GROUND RX						// 25	- P2.1
 										// 26 	- P2.2
 										// 27 	- P3.4
 										// 28 	- P3.5

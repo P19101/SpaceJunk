@@ -9,25 +9,25 @@
 
 uint8_t recieve_msg(inputMsg* msg){
 	// TODO: as with all the message stuff, i need to add timeout checks to this;
-	
+
 	// first get the message lenght of the incomming message.
-	read_string_UART(@(inputMsg->messageLength), 2);
+	read_string_UART(&(msg->messageLength), 2);
 	
 	// subtract 2 for the 2 bytes already gathered which make up the length.
-	uint16_t messageLength = (inputMsg->messageLength - 2)
+	uint16_t messageLength = (msg->messageLength - 2);
 	
 	// second get the opcode for the message.
-	read_string_UART(@(inputMsg->opcode), 1);
+	read_string_UART(&(msg->opcode), 1);
 	
 	// subtract 1 from the total message lenght for the opcode which was just gathred.
 	messageLength = messageLength - 1;
 	
 	// read the payload for the message and store it in the payload part of the struct.
-	read_string_UART(&(inputMsg->payload), messageLength);
+	read_string_UART(&(msg->payload), messageLength);
 }
 
 
 uint8_t send_rsp(outputMsg* rsp){
 	// send the entire message back including the length and opcode.
-	send_string_UART(outputMsg, (outputMsg->messageLength));
+	send_string_UART(rsp, (rsp->messageLength));
 }

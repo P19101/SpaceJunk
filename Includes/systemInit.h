@@ -13,6 +13,7 @@
 #include "adc12Bit.h"
 #include "clockSourcesInit.h"
 #include "USCITypeA.H"
+#include "uart.h"
 
 /**
  * Master function which will call all corrisponding configuration functions.

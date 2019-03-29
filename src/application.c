@@ -5,6 +5,7 @@
  * 		after a standard reset event. 
  */
 #include "application.h"
+#include "messageHandler.h"
 
 uint8_t application(void){
 	/* stop watchdog timer TODO: this should not be done
@@ -33,7 +34,7 @@ uint8_t application(void){
 		// speed the clock back up to receive the message. 
 		
 		// receive the message from ground. 
-		cmdError = recieve_msg(@command);
+		cmdError = recieve_msg(&command);
 		
 		// if the message was correctly received, then complete the command. 
 		if(!cmdError){
@@ -41,7 +42,7 @@ uint8_t application(void){
 		}
 		
 		// send back the response from the command. 
-		cmdError = send_rsp(@response);
+		cmdError = send_rsp(&response);
 	}
 	
 }
