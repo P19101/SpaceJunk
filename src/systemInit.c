@@ -16,6 +16,8 @@ void configure_sys(void){
 }
 
 void configure_GIPO(void){
+    unlock_CS_register_set();
+    CSCTL5 &= ~(LFXTOFFG | HFXTOFFG);
 	set_port_output_pins();
 	enable_port_pull_resistors();
 	set_pull_up_resistors();
@@ -51,7 +53,7 @@ void configure_clock_sources(void){
 	default_clock_divisors();
 	high_freq_clk_range(HIGH_FREQ_RANGE);
 	set_digital_clock_frequency(DIGITAL_CLK_FREQ);
-	CSCTL5 &= (LFXTOFFG | HFXTOFFG);
+	CSCTL5 &= ~(LFXTOFFG | HFXTOFFG);
 }
 	
 void configure_UART(void){
