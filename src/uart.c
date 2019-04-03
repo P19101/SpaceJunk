@@ -52,23 +52,12 @@ void select_baud_rate_UART(uint8_t baud){
     // one variable for each of the four registers which controls the baud rate.
     // as of now this function only handles the 32.768kHz clock.
 	
-	/* TODO: currently running of the SMCLK at 1MHz due to an error with the 32k crystal. 
-	 * the crystal would probably be better so hopefully it can be fixed. for now only
-	 * one baud is supported. 
-	 */
     uint16_t baudInt;
     uint8_t oversample;
     uint8_t modFactorOne;
     uint8_t modFactorTwo;
     switch(baud){
-        case BAUD_19200:
-            baudInt = 3;
-            oversample = ENABLE;
-            modFactorOne = 3;
-            modFactorTwo = 0x2;
-            break;
         // all numbers are taken from the family manual talbe 30-5 and pg 779
-        /*
         case BAUD_1200:
             baudInt = 1;
             oversample = ENABLE;
@@ -99,7 +88,7 @@ void select_baud_rate_UART(uint8_t baud){
             modFactorOne = 0;
             modFactorTwo = 0;
             break;
-            */
+            
     }
     set_BR_Int_USCIA_UART(baudInt);
     choose_oversampling_mode_USCIA_UART(oversample);

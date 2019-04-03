@@ -15,12 +15,13 @@
 #define UART_PARITY_ERR 	-2
 #define UART_FRAMMING_ERR 	-3
 
+// NOTE: putty on many modern machines does not go below 9600 buad even though the setting can go lower,
+// suggest staying with at least that for main comms.
 typedef enum{
 	BAUD_1200,
 	BAUD_2400,
 	BAUD_4800,
 	BAUD_9600,
-	BAUD_19200,
 }UART_baud_rates_32_768_kHz_clk;
 
 /**
