@@ -28,11 +28,12 @@ uint8_t application(void){
 	// start main control loop.
 	while(true){
 	    
-		// slow the clock while the system is idle
+		// slow the clock while the system is idle by setting master clk to be sourced by the 32kHz crystal
+		select_MCLK_source(LFXTCLK);
 		while(read_RX_interrupt_flag() == 0);		// this is where the watchdog timer should be reset when online
 	    
-		// speed the clock back up to receive the message. 
-		
+		// speed the clock back up to receive the message. Done by reseting the MCLK source to the high freq crystal.
+		select_MCLK_source(HFXTCLK);
 		// receive the message from ground. 
 		cmdError = recieve_msg(&command);
 		

@@ -16,8 +16,6 @@ void configure_sys(void){
 }
 
 void configure_GIPO(void){
-    unlock_CS_register_set();
-    CSCTL5 &= ~(LFXTOFFG | HFXTOFFG);
 	set_port_output_pins();
 	enable_port_pull_resistors();
 	set_pull_up_resistors();
@@ -59,7 +57,7 @@ void configure_clock_sources(void){
 void configure_UART(void){
 	hold_USCIA_UART_reset();
 	choose_USCIA_operation_mode(UART_MODE);
-	set_clock_source_USCIA_UART(USCIA_SMCLK);
-	select_baud_rate_UART(BAUD_19200);
+	set_clock_source_USCIA_UART(USCIA_ACLK);
+	select_baud_rate_UART(BAUD_9600);
 	release_USCIA_UART_reset();
 }
