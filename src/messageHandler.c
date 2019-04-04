@@ -6,12 +6,18 @@
  */
  
 #include "messageHandler.h"
+#include "uart.h"
 
 uint8_t recieve_msg(inputMsg* msg){
 	// TODO: as with all the message stuff, i need to add timeout checks to this;
-
+    uint8_t byte_data;
+    msg->messageLength = 0;
 	// first get the message lenght of the incomming message.
-	read_string_UART(&(msg->messageLength), 2);
+    byte_data = read_byte_UART();
+    msg->messageLength = byte_data;
+    byte_data = read_byte_UART();
+    msg->messageLength = byte_data;
+	//read_string_UART(&(msg->messageLength), 2);
 	
 	// subtract 2 for the 2 bytes already gathered which make up the length.
 	uint16_t messageLength = (msg->messageLength - 2);

@@ -18,8 +18,8 @@ uint8_t application(void){
 	configure_sys();
 	
 	// TODO: put this in a function with timeout protection.
-	while(read_TX_interrupt_flag() == 0);
-	send_byte_UART('>'); // send a command promter to show that the system is online.
+	//while(read_TX_interrupt_flag() == 0);
+	//send_byte_UART('e'); // send a command promter to show that the system is online.
 	
 	uint8_t cmdError = 0;
 	inputMsg command;
@@ -33,12 +33,15 @@ uint8_t application(void){
 		while(read_RX_interrupt_flag() == 0);		// this is where the watchdog timer should be reset when online
 	    
 		// speed the clock back up to receive the message. Done by reseting the MCLK source to the high freq crystal.
-		select_MCLK_source(HFXTCLK);
+		select_MCLK_source(MODCLK); //TODO : this should be the high freq clock, but we dont have one currently.
 		// receive the message from ground. 
 		cmdError = recieve_msg(&command);
 		
 		// if the message was correctly received, then complete the command. 
 		if(!cmdError){
+		    // making a generic response for comm test
+		    response.messageLength = 2;
+		    response.opcode = 0xFF;
 			// command handler. 
 		}
 		

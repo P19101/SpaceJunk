@@ -5,6 +5,7 @@
  * 		after a standard reset event. 
  */
 #include "systemInit.h"
+#include "uart.h"
 
 
 void configure_sys(void){
@@ -57,7 +58,7 @@ void configure_clock_sources(void){
 void configure_UART(void){
 	hold_USCIA_UART_reset();
 	choose_USCIA_operation_mode(UART_MODE);
-	set_clock_source_USCIA_UART(USCIA_ACLK);
-	select_baud_rate_UART(BAUD_9600);
+	set_clock_source_USCIA_UART(USCIA_SMCLK);
+	select_baud_rate_UART(BAUD_19200);
 	release_USCIA_UART_reset();
 }

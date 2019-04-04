@@ -82,6 +82,12 @@ void select_baud_rate_UART(uint8_t baud){
             modFactorOne = DEFAULT_SELECTION;
             modFactorTwo = 0x92;
             break;
+        case BAUD_19200:
+            baudInt = 3;
+            oversample = ENABLE;
+            modFactorOne = 0x04;
+            modFactorTwo = 0x02;
+            break;
         default:
             baudInt = 0;
             oversample = 0;

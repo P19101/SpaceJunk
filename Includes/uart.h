@@ -22,6 +22,7 @@ typedef enum{
 	BAUD_2400,
 	BAUD_4800,
 	BAUD_9600,
+	BAUD_19200
 }UART_baud_rates_32_768_kHz_clk;
 
 /**
