@@ -6,6 +6,7 @@
  */
 #include "application.h"
 #include "messageHandler.h"
+#include "commandHandler.h"
 
 uint8_t application(void){
 	/* stop watchdog timer TODO: this should not be done
@@ -39,10 +40,7 @@ uint8_t application(void){
 		
 		// if the message was correctly received, then complete the command. 
 		if(!cmdError){
-		    // making a generic response for comm test
-		    response.messageLength = 2;
-		    response.opcode = 0xFF;
-			// command handler. 
+		    handle_command(&command, &response);
 		}
 		
 		// send back the response from the command. 

@@ -1,15 +1,46 @@
 import serial
+import time
+import struct
 
 main_comm = serial.Serial()
 main_comm.baudrate = 19200
 main_comm.port = 'COM8'
-
+main_comm.timeout = 2
 
 command_list = {"H" : "Help command: 'H' or 'Help' - Executes the help function which list all the available commands",
                 "E" : "Exit command: 'E' or 'Exit' - Exits the program",
-                "S" : "Status command: 'S' or 'Status' - Gives the current status of the terminal connection.\r\n\t\t\t\t  If the terminal could not be opened at the start of the program,\r\n\t\t\t\t  then it will have to be opened manually using the 'Open' command"}
+                "S" : "Status command: 'S' or 'Status' - Gives the current status of the terminal connection.\r\n\t\t\t\t  If the terminal could not be opened at the start of the program,\r\n\t\t\t\t  then it will have to be opened manually using the 'Open' command",
+                "O" : "Open command: 'O' or 'Open' - Opens the main comm port with default settings currently.",
+                "T" : "Test command: 'T' or 'Test' - Sends a test message to the sattilte and reads back a response to test the comms."}
+
+'''
+'''
+def send_cmd(opcode='00', size=0x03, payload=b''):
+    #send the wake byte
+    main_comm.write(bytes.fromhex('AA'))
+    #read back ACK
+    ack_byte = main_comm.read() 
+    #print(ack_byte)
+    if(ack_byte.hex() != 'aa'):
+        print("BAD ACK")
+        return -1
+    else:
+        print("ACK returned")
+    #write the message length
+    main_comm.write(struct.pack('<H',size))
+    #write the opcode
+    main_comm.write(bytes.fromhex(opcode))
+    #write the payload bytes
+    main_comm.write(payload)
 
 
+def read_rsp():    
+    main_comm.timeout = 3
+    msg_length = struct.unpack('H', main_comm.read(2))
+    return main_comm.read(msg_length[0])
+    
+    
+    
 def main():
     exit_check = 'n'
     while(exit_check == 'n'):
@@ -29,50 +60,18 @@ def main():
             except:
                 print("comm port failed to open")
         elif(answer.upper() == 'T' or answer.upper() == "TEST"):
-            main_comm.write(bytes.fromhex('0A')) 
-            #main_comm.write(bytes.fromhex())
-            #main_comm.write(bytes.fromhex('0f'))
-            msg_length = main_comm.read(2)
-            if(msg_length != b''):
-                opcode = main_comm.read()
-                response = main_comm.read(int(msg_length)-3)
-                print(msg_length)
-                print(opcode)
-            else:
-                print("no msg returned")
-                
-            '''Set up the address bit detection stuff and/or send a few characters of "wake" sorta and then send the message length after ACK back
-                After ACK of message size, send all the data and look for ACK bytes or ERROR Bytes. Allow the system to brace for all the data to
-                keep up because no interrupts. could also use interrupts realistically. 
-            '''
+            send_cmd('00', 0x03)
+            payload = read_rsp()
+            print(struct.unpack('<HB',payload))
+        elif(answer.upper() == 'R' or answer.upper() == "READ"):
+            # TODO: make a function which creates and pack payloads according to predefined argumnets for each command. 
+            send_cmd('02', 0x04, b'\x03')
+            payload = read_rsp()
+            decoder = struct.unpack('HBB',payload)         
+            print("messageLength: ", decoder[0],", opcode: ", decoder[1],", sensorStatus: ", "OFF" if decoder[2] == 0 else "ON")
+            
+           
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

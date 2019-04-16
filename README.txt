@@ -72,4 +72,46 @@ Cygwin
      Also search for make and there should be a gnumake or something similar, select that. 
      I would search for git and unselect it if checked because you should have installed it stand alone previously.
     -wait for the install to finish. 
-    
+    IMPORTANT:
+        if you use Cygwin, it comes prepackaged with python 2. You can uncheck to install simply by searching for python.
+        There is a workaround I found for running the python 3 based ground software in Cygwin which will not conflict with the 2 install.
+        If you navigate in Cygwin to where your root is (cd ~) and run the ls -a command you will see a file called .bash_profile.
+        Open this file with any text editor and add the line alias python3=location/of/python/install.exe pointing to wherever the python 3 .exe file is
+        (by default it should be in C:/Users/usernam/AppData/Local/Programs/Python/Python37/python.exe)
+        Doing this will allow you to essentailly pipe the ground software into the python interpreter by calling the command: python3 groundControl.py
+        which can also easily be made into a script to open with one click.
+        
+        
+        
+Software segments:
+
+    Flight Code:
+        The flight code references all code which will be on board the actual sat. For now this only counts the code on the MSP430FR5969 main controller.
+        There are a few key things to know about the flight code which will make development easier
+        
+        Navigating the code base - The code base can be a bit intense because of the many layers that I added. The intent of that is so that there isnt a great
+        need to always go to the manual to understand how different modules work. It is also designed to make the code portable. Ideally, most of the code in application.c,
+        messageHandler.c, and commandHandler.c would not have to change at all even if a completely different micro controller were to be selected. To navigate the code successfully,
+        The two most important files to look at are likely pinUsage.h and commandHandler.h/.c.
+        
+        pinUsage.h - the intent of this file is to list all the pins on the chip (no so portable i know) and there for all the possible usages of the chip. To this effect
+        I have listed all 48 pins on the MSP430FR5969 and a few have other #defines next to them. The point of these is to only need to reference the def when wanting to
+        use the pin. for example, if the nichrome deployment is on P1.0 (its not just example), but all of the sudden that pin is needed for some other function, instead
+        of having to find every place that pin is used in the code, the def NICHROME_ON_OFF can simply be moved to the new pin and assigned the corret pin value. In addition
+        if the port changes, at the top of the file, each module has the associated port. When wanting to use the nichrome, one can simply call NICHROME_CONTROL_PORT, NICHROME_ON_OFF
+        
+        commandHandler - This file holds the entry for each of the commands which can be given to the system. In addition it will have the function calls which are made for each command
+        allowing easy exploration of what each command is doing on a lower level. In addition, the file messageHandler.h holds a group of command structures. These structures are the
+        way that new commands can be easily added. As an example, we can look at the input structures. There is one main input struct called inputMsg which holds 3 things: 
+        1. the message length, every message must have a message length which includes the lenght of this data itself (2 bytes). 
+        2. the opcode, every message also has one of these which is how the command handler chooses which function set to call. This single byte must also be included in the msg length
+        3. the payload, this can be empty and is actually a union of other structs. 
+        The purpose of the union within the payload is so that one inputMsg can represent all commands and this inputMsg can be passed through functions by pointer.
+        When making a new command the different parts of the payload for that command are specified, and the command should then be added to the union. with just those two steps
+        the new command can be transfered to the command handler. 
+        
+    Ground Software:
+        The ground software is a Python 3 program whcih is pretty simple. It can be run with any python interpreter, but for safty its best to use a version newer than
+        python 3.4 for all the packages to be fully functional. The program itself is essentially a while loop which reads user input for which command to run, and then sends
+        the needed data to the sat. Each command has access to the send_msg and read_rsp functions which can be used to send and read all the data. Seperately the data can
+        be decoded and determined to be correct/usefull. 

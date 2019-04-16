@@ -176,13 +176,13 @@ void set_ADC_clock_source(uint8_t clockSource){
         case ADC_OSCILLATOR:
             clockSourceSet = DEFAULT_SELECTION;
             break;
-        case ACLOCK:
+        case ADC_ACLOCK:
             clockSourceSet = ADC12SSEL0;
             break;
-        case MCLOCK:
+        case ADC_MCLOCK:
             clockSourceSet = ADC12SSEL1;
             break;
-        case SMCLOCK:
+        case ADC_SMCLOCK:
             clockSourceSet = ADC12SSEL1 | ADC12SSEL0;
             break;
         default:
@@ -305,6 +305,9 @@ void set_ADC_clock_predivider(uint8_t divisor){
         case ADC_PRE_DIV_64:
             divisorSet = ADC12PDIV0 | ADC12PDIV1;
             break;
+        default:
+            divisorSet = DEFAULT_SELECTION;
+            break;
     }
     ADC12CTL1 |= divisorSet;
 }
@@ -344,6 +347,9 @@ void set_ADC_resolution(uint8_t resolution){
         case ADC_12BIT_RES:
             resolutionSet = ADC12RES1;
             break;
+        default:
+            resolutionSet = DEFAULT_SELECTION;
+            break;
     }
     ADC12CTL2 |= resolutionSet;
 }
@@ -353,7 +359,7 @@ void set_ADC_resolution(uint8_t resolution){
 void select_ADC_mem_register(uint8_t memRegister){
 
     // clear the bits
-    ADC12CTL3 |= ADC12CSTARTADD0 | ADC12CSTARTADD1 | ADC12CSTARTADD2 | ADC12CSTARTADD3 | ADC12CSTARTADD4;
+    ADC12CTL3 &= ~(ADC12CSTARTADD0 | ADC12CSTARTADD1 | ADC12CSTARTADD2 | ADC12CSTARTADD3 | ADC12CSTARTADD4);
 
     // ensure the user selection is in the bounds
     if(memRegister > 0x1F){
@@ -417,3 +423,90 @@ void set_or_clear_internal_source_3(uint8_t source){
         ADC12CTL3 &= ~(ADC12ICH3MAP);
     }
 }
+
+/*******************************************ADC MEM REGISTERS******************************/
+
+uint16_t read_conversion_mem(uint8_t regNum){
+    if(regNum > 31){
+        return 0xA0A0; //some pattern unlikely to naturally occur that i can check for
+    }
+    switch(regNum){
+        case MEM_0:
+            return ADC12MEM0;
+        case MEM_1:
+            return ADC12MEM1;
+        case MEM_2:
+            return ADC12MEM2;
+        case MEM_3:
+            return ADC12MEM3;
+        case MEM_4:
+            return ADC12MEM4;
+        case MEM_5:
+            return ADC12MEM5;
+        case MEM_6:
+            return ADC12MEM6;
+        case MEM_7:
+            return ADC12MEM7;
+        case MEM_8:
+            return ADC12MEM8;
+        case MEM_9:
+            return ADC12MEM9;
+        case MEM_10:
+            return ADC12MEM10;
+        case MEM_11:
+            return ADC12MEM11;
+        case MEM_12:
+            return ADC12MEM12;
+        case MEM_13:
+            return ADC12MEM13;
+        case MEM_14:
+            return ADC12MEM14;
+        case MEM_15:
+            return ADC12MEM15;
+        case MEM_16:
+            return ADC12MEM16;
+        case MEM_17:
+            return ADC12MEM17;
+        case MEM_18:
+            return ADC12MEM18;
+        case MEM_19:
+            return ADC12MEM19;
+        case MEM_20:
+            return ADC12MEM20;
+        case MEM_21:
+            return ADC12MEM21;
+        case MEM_22:
+            return ADC12MEM22;
+        case MEM_23:
+            return ADC12MEM23;
+        case MEM_24:
+            return ADC12MEM24;
+        case MEM_25:
+            return ADC12MEM25;
+        case MEM_26:
+            return ADC12MEM26;
+        case MEM_27:
+            return ADC12MEM27;
+        case MEM_28:
+            return ADC12MEM28;
+        case MEM_29:
+            return ADC12MEM29;
+        case MEM_30:
+            return ADC12MEM30;
+        case MEM_31:
+            return ADC12MEM31;
+        default:
+            return DEFAULT_SELECTION;
+    }
+}
+
+
+/***********************************************ADC MCTLx registers ***************************************/
+
+
+/***********************************************ADC IFG registers *****************************************/
+uint8_t read_conversion_flag(uint8_t memRegister){
+    //TODO : actually make this read any memory space. just need a default for now.
+    return (ADC12IFGR0 & ADC12IFG0);
+}
+

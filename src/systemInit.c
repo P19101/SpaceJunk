@@ -31,6 +31,7 @@ void configure_GIPO(void){
 }
 
 void configure_ADC(void){
+    disable_adc_12bit();
     set_sample_hold_time_zero(ADC_MULTISAMPLE_HOLD_TIME);
     set_sample_hold_time_one(ADC_MULTISAMPLE_HOLD_TIME);
     set_conversion_sequence(ADC_SAMPLING_MODE);

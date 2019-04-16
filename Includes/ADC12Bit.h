@@ -56,9 +56,9 @@ typedef enum {
  */
 typedef enum {
     ADC_OSCILLATOR,
-    ACLOCK,
-    MCLOCK,
-    SMCLOCK
+    ADC_ACLOCK,
+    ADC_MCLOCK,
+    ADC_SMCLOCK
 }ADCClockSources;
 
 /*
@@ -112,6 +112,41 @@ typedef enum {
     ADC_12BIT_RES
 }ADCResolution;
 
+// this is kinda ugly but idk, i think prob the easiest way to do it. 
+typedef enum{
+    MEM_0,
+    MEM_1,
+    MEM_2,
+    MEM_3,
+    MEM_4,
+    MEM_5,
+    MEM_6,
+    MEM_7,
+    MEM_8,
+    MEM_9,
+    MEM_10,
+    MEM_11,
+    MEM_12,
+    MEM_13,
+    MEM_14,
+    MEM_15,
+    MEM_16,
+    MEM_17,
+    MEM_18,
+    MEM_19,
+    MEM_20,
+    MEM_21,
+    MEM_22,
+    MEM_23,
+    MEM_24,
+    MEM_25,
+    MEM_26,
+    MEM_27,
+    MEM_28,
+    MEM_29,
+    MEM_30,
+    MEM_31
+}ADCMemRegisters;
 /**
  * Start the ADC conversion of the selected input signal. This is only valid when
  * the trigger source is set to be the default software trigger
@@ -366,13 +401,15 @@ void set_or_clear_internal_source_3(uint8_t source);
  *  @return - uint16_t conversionResult: the result of the last conversion stored in the selected memory register
  *          in normal operation from reset, the result is right justified meaning the top (16-ADCRES) bits are all 0.
  */
-//TODO: write a thing that reads the conversion memory,
+uint16_t read_conversion_mem(uint8_t regNum);
 
 /**
  * Choose the settings for the selected ADC memory register. Each of the 32 ADCMEM registers has one corrisponding
  * ADCMCTL register used to determine its input source,
  */
 //TODO: write stuff to select all the ADCMCTL settings, there is many more than i thought originally.
+
+uint8_t read_conversion_flag(uint8_t memRegister);
 
 
 #endif /* ADC12BIT_H_ */

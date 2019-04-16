@@ -26,15 +26,15 @@
  * GPIOalternateFunctionList sheet in the docs folder of the repository. 
  *		PIN FUNCTION |   PIN POSITION | PIN# |  PIN NAME
  */
-#define DEPLOY_SENSOR_1 	PIN_1		// 1 	- P1.0
-#define DEPLOY_SENSOR_2		PIN_2		// 2 	- P1.1
-#define DEPLOY_SENSOR_3		PIN_3		// 3 	- P1.2
+#define DEPLOY_SENSOR_1 	PIN_0		// 1 	- P1.0
+#define DEPLOY_SENSOR_2		PIN_1		// 2 	- P1.1
+#define DEPLOY_SENSOR_3		PIN_2		// 3 	- P1.2
 										// 4 	- P3.0
 										// 5 	- P3.1
 										// 6 	- P3.2
 										// 7 	- P3.3
 										// 8 	- P4.7
-#define DEPLOY_SENSOR_4		PIN_4		// 9 	- P1.3
+#define DEPLOY_SENSOR_4		PIN_3		// 9 	- P1.3
 										// 10 	- P1.4
 										// 11 	- P1.5
 //JTAG TDO PIN							// 12 	- PJ.0
@@ -122,7 +122,7 @@
 #define PORT_4_SECONDARIES  {DEFAULT_SELECTION}
 #define PORT_J_SECONDARIES  {DEFAULT_SELECTION}
 
-#define PORT_1_TERTIARIES   {PIN_0, PIN_1, PIN_2, PIN_3, PIN_6, PIN_7, DEFAULT_SELECTION}
+#define PORT_1_TERTIARIES   {PIN_6, PIN_7, DEFAULT_SELECTION}
 #define PORT_2_TERTIARIES   {DEFAULT_SELECTION}
 #define PORT_3_TERTIARIES   {DEFAULT_SELECTION}
 #define PORT_4_TERTIARIES   {DEFAULT_SELECTION}
@@ -154,7 +154,7 @@
 #define ADC_SAMPLING_MODE   SINGLE_CHANNEL_SINGLE_CONVERSION
 
 // DEFAULT ADC CLOCK SOURCE
-#define ADC_CLOCK_SOURCE    ADC_OSCILLATOR
+#define ADC_CLOCK_SOURCE    ADC_SMCLOCK
 
 // DEFAULT ADC CLOCK SOURCE DIVIDERS
 #define ADC_PRIMARY_DIVIDER     ADC_PRE_DIV_1
