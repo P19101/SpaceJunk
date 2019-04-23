@@ -24,7 +24,6 @@ int8_t handle_command(inputMsg* msg, outputMsg* rsp){
             rsp->messageLength = 4;
             rsp->opcode = READ_SENS_OP;
             rsp->payload.readSensorRsp.sensorVal = read_GPIO_input_pin(DEPLOY_SENSOR_PORT, DEPLOY_SENSOR_4);
-
             break;
         default:
             break;
